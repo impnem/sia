@@ -15,10 +15,10 @@
 
     <v-list>
       <v-list-item
-        v-for="(item, i) in items"
+        v-for="(item, i) in site.menu"
         v-bind:key="i"
         v-bind:to="item.to"
-        v-on:click="itemClick(item.title)"
+        v-on:click="menuClick(item.title)"
       >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
@@ -33,13 +33,26 @@
 </template>
 
 <script>
-let eventBus
+import { EventBus } from '@/main.js'
 
 export default {
-  props: ['items'],
+  site: {
+    menu: [
+      {
+        title: 'Home',
+        icon: 'mdi-home',
+        to: '/'
+      },
+      {
+        title: 'Daily Study',
+        icon: 'mdi-book-open-page-variant',
+        to: '/dailyStudy'
+      }
+    ]
+  },
   methods: {
-    itemClick (titleName) {
-
+    menuClick (titleName) {
+      EventBus.$on('menuClick', titleName)
     }
   }
 }

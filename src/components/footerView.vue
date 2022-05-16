@@ -7,8 +7,11 @@
 </template>
 
 <script>
+
 export default {
-  props: ['footer']
+  site: {
+    footer: 'Copyright 2022. impnem. All RIGHTS RESERVED'
+  }
 }
 </script>
 
