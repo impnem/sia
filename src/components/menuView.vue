@@ -8,6 +8,8 @@
       <v-list-item-content>
         <v-list-item-title>Jane Smith</v-list-item-title>
         <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+        <v-list-item-subtitle>메뉴의 수 : {{ count }}</v-list-item-subtitle>
+        <v-list-item-subtitle>홈의 갯수 : {{ homes }}({{ percent }}%)</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
@@ -25,7 +27,7 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title >{{ item.title }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -34,25 +36,33 @@
 
 <script>
 import { EventBus } from '@/main.js'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
-  site: {
-    menu: [
-      {
-        title: 'Home',
-        icon: 'mdi-home',
-        to: '/'
-      },
-      {
-        title: 'Daily Study',
-        icon: 'mdi-book-open-page-variant',
-        to: '/dailyStudy'
-      }
-    ]
+  data () {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapGetters({
+      count: 'menuCount',
+      homes: 'countOfHome',
+      percent: 'percentOfHome'
+    }),
+    ...mapState(['site'])
+    // ...mapGetters(['menuCount', 'countOfHome', 'percentOfHome'])
   },
   methods: {
+    ...mapMutations(['changeMenuTitleM']),
+    ...mapActions(['changeMenuTitleA']),
     menuClick (titleName) {
-      EventBus.$on('menuClick', titleName)
+      console.log('emit ' + titleName)
+      EventBus.$emit('menuClick', titleName)
+      // this.$store.commit('changeMenuTitleM', titleName) import 없이 Mutations 방식
+
+      // this.$store.dispatch('changeMenuTitleA', titleName)
+      this.changeMenuTitleA()
     }
   }
 }

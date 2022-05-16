@@ -1,6 +1,6 @@
 <template>
   <v-toolbar-title>
-
+    {{ $store.state.site.title }}
   </v-toolbar-title>
 </template>
 
@@ -8,12 +8,15 @@
 import { EventBus } from '@/main.js'
 
 export default {
-  site: {
-    title: 'Home'
+  data () {
+    return {
+
+    }
   },
   mounted () {
-    EventBus.$on('menuCilck', titleName => {
-      this.title = titleName
+    EventBus.$on('menuClick', titleName => {
+      console.log('on ' + titleName)
+      this.$store.state.site.title = titleName
     })
   }
 }

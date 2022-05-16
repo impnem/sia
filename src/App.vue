@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import SiteTitle from '@/components/titleView.vue'
-import SiteFooter from '@/components/footerView.vue'
-import SiteMenu from '@/components/menuView.vue'
+import SiteTitle from '@/components/TitleView.vue'
+import SiteFooter from '@/components/FooterView.vue'
+import SiteMenu from '@/components/MenuView.vue'
 
 export default {
   components: { SiteTitle, SiteFooter, SiteMenu },
