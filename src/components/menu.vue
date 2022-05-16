@@ -33,13 +33,13 @@
 </template>
 
 <script>
-var eventBus
+let eventBus
 
 export default {
   props: ['items'],
   methods: {
     itemClick (titleName) {
-      this.$emit()
+
     }
   }
 }
