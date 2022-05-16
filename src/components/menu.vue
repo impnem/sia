@@ -16,8 +16,9 @@
     <v-list>
       <v-list-item
         v-for="(item, i) in items"
-        :key="i"
-        :to="item.to"
+        v-bind:key="i"
+        v-bind:to="item.to"
+        v-on:click="itemClick(item.title)"
       >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
@@ -32,8 +33,15 @@
 </template>
 
 <script>
+var eventBus
+
 export default {
-  props: ['items']
+  props: ['items'],
+  methods: {
+    itemClick (titleName) {
+      this.$emit()
+    }
+  }
 }
 </script>
 

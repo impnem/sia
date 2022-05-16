@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import SiteTitle from '@/views/site/titleView.vue'
-import SiteFooter from '@/views/site/footerView.vue'
-import SiteMenu from '@/views/site/menuView.vue'
+import SiteTitle from '@/components/title.vue'
+import SiteFooter from '@/components/footer.vue'
+import SiteMenu from '@/components/menu.vue'
 
 export default {
   components: { SiteTitle, SiteFooter, SiteMenu },
@@ -36,7 +36,7 @@ export default {
         footer: 'Copyright 2022. impnem. All RIGHTS RESERVED',
         menu: [
           {
-            title: 'home',
+            title: 'Home',
             icon: 'mdi-home',
             to: '/'
           },
