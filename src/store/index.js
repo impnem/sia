@@ -29,11 +29,11 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
             date: {
               M01_D01: {
                 subject: '실패를 받아들이는',
-                link: 'https://string.tistory.com/88'
+                src: 'https://string.tistory.com/88'
               },
               M01_D02: {
                 subject: '성공를 받아들이는',
-                link: 'https://string.tistory.com/87'
+                src: 'https://string.tistory.com/87'
               }
             }
           }

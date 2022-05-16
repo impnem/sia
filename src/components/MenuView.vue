@@ -18,9 +18,9 @@
     <v-list>
       <v-list-item
         v-for="(item, i) in site.menu"
-        v-bind:key="i"
-        v-bind:to="item.to"
-        v-on:click="menuClick(item.title)"
+        :key="i"
+        :to="item.to"
+        @click="menuClick(item.title)"
       >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
