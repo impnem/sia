@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
   state: { // data의 기능을 함
+    date: null,
     site: {
       title: 'Home',
       footer: 'Copyright 2022. impnem. All RIGHTS RESERVED',
@@ -12,36 +13,60 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
         {
           title: 'Home',
           icon: 'mdi-home',
-          to: '/',
-          data: {
-            text: [
-              '명언1',
-              '명언2',
-              '명언3'
-            ]
-          }
+          to: '/'
         },
         {
           title: 'Daily Study',
           icon: 'mdi-book-open-page-variant',
-          to: '/dailyStudy',
-          data: {
-            date: {
-              M01_D01: {
-                subject: '실패를 받아들이는',
-                src: 'https://string.tistory.com/88'
-              },
-              M01_D02: {
-                subject: '성공를 받아들이는',
-                src: 'https://string.tistory.com/87'
-              }
-            }
-          }
+          to: '/dailyStudy'
         }
       ]
+    },
+    user: {
+      user1: {
+        userId: 'user1',
+        userPw: 'abcd1',
+        userNickname: 'user11'
+      },
+      user2: {
+        userId: 'user2',
+        userPw: 'abcd2',
+        userNickname: 'user22'
+      }
+    },
+    data: {
+      fs: [
+        {
+          author: '세종대왕', fSaying: '믿음'
+        },
+        {
+          author: '이순신', fSaying: '경쟁'
+        },
+        {
+          author: '유관순', fSaying: '정의'
+        }
+      ],
+      ds: {
+        ds0516: {
+          subject: '주가 폭락16',
+          src: 'https://www.youtube.com/watch?v=kwtU0TjhyoI'
+        },
+        ds0517: {
+          subject: '주가 폭락17',
+          src: 'https://www.youtube.com/watch?v=kwtU0TjhyoI'
+        },
+        ds0518: {
+          subject: '주가 폭락18',
+          src: 'https://www.youtube.com/watch?v=kwtU0TjhyoI'
+        }
+      }
     }
   },
   getters: { // computed의 기능을 함 - computed와 다른 점은 함수에게 어떤 것을 쓸 것인지 알려줘야 한다.
+    fsRandom: state => { // 명언 랜덤으로 가져오기
+      const fsRand = Math.floor(Math.random() * (Object.keys(state.data.fs).length))
+      return fsRand
+    },
     menuCount: state => { // arrow function
       return state.site.menu.length
     },
@@ -57,6 +82,9 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
     }
   },
   mutations: { // 변화(변이), state를 변화, commit 사용, 통상적으로 payload:짐 사용, 모든 것은 동기로 작동, 비동기 로직은 actions에서 사용
+    changeDate: (state, payload) => { // 날짜 변경시 작동
+      state.date = payload
+    },
     changeMenuTitleM: (state, payload) => {
       state.menu.push(payload)
     }

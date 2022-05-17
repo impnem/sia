@@ -11,7 +11,8 @@ export default new Vuetify({
         primary: '#ff79c6',
         secondary: '#343746',
         thirdly: '#282a36',
-        fourthly: '#21222c'
+        fourthly: '#21222c',
+        memo: '#e6b905'
       }
     }
   }

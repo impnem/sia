@@ -1,15 +1,13 @@
 <template>
-  <hello-world />
+  <famous-saying/>
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld'
+import FamousSaying from '@/components/Home/FamousSaying.vue'
 
 export default {
-  name: 'HomeView',
-
   components: {
-    HelloWorld
+    FamousSaying
   }
 }
 </script>

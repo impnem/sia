@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import { EventBus } from '@/main.js'
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
@@ -58,7 +57,8 @@ export default {
     ...mapActions(['changeMenuTitleA']),
     menuClick (titleName) {
       console.log('emit ' + titleName)
-      EventBus.$emit('menuClick', titleName)
+      // EventBus.$emit('menuClick', titleName)
+
       // this.$store.commit('changeMenuTitleM', titleName) import 없이 Mutations 방식
 
       // this.$store.dispatch('changeMenuTitleA', titleName)

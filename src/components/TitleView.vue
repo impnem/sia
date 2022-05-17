@@ -1,11 +1,11 @@
 <template>
   <v-toolbar-title>
-    {{ $store.state.site.title }}
+    {{ title }}
   </v-toolbar-title>
 </template>
 
 <script>
-import { EventBus } from '@/main.js'
+import { mapState } from 'vuex'
 
 export default {
   data () {
@@ -13,10 +13,9 @@ export default {
 
     }
   },
-  mounted () {
-    EventBus.$on('menuClick', titleName => {
-      console.log('on ' + titleName)
-      this.$store.state.site.title = titleName
+  computed: {
+    ...mapState({
+      title: state => state.site.title
     })
   }
 }

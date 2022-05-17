@@ -10,7 +10,7 @@
       <v-spacer/>
       <date-picker></date-picker>
     </v-app-bar>
-    <v-navigation-drawer app v-model="drawer" width="400" color="secondary">
+    <v-navigation-drawer app v-model="drawer" width="350" color="secondary">
       <site-menu></site-menu>
     </v-navigation-drawer>
     <v-main>

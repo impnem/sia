@@ -5,30 +5,51 @@
       color="fourthly"
       depressed
       x-large
-      @click="dialog=true"
+      @click="dialog = true"
     >
-      {{ getDate }}
+      {{ date == null ? getDate : date }}
     </v-btn>
     <v-dialog
       v-model="dialog"
       transition="dialog-top-transition"
-      max-width="500"
-      max-height="500"
+      max-width="400"
     >
       <v-date-picker
+        full-width
         v-model="picker"
-        :landscape="landscape"
-        :reactive="reactive"
-
-        full-width>
+        @dblclick:date="dateClick"
+        >
+        <v-spacer></v-spacer>
+        <v-btn text color="primary" @click="dialog = false">Cancel</v-btn>
+        <v-btn text color="primary" @click="dateClick(picker)">OK</v-btn>
       </v-date-picker>
     </v-dialog>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
+  data () {
+    return {
+      dialog: false,
+      picker: new Date().toISOString().substr(0, 10),
+      landscape: false,
+      reactive: false
+    }
+  },
+  methods: {
+    ...mapMutations(['changeDate']),
+    dateClick (selectedDate) {
+      this.changeDate(selectedDate)
+      this.dialog = false
+    }
+  },
   computed: {
+    ...mapState({
+      date: state => state.date
+    }),
     getDate: () => { // 오늘 날짜 yyyy-mm-dd
       const today = new Date()
 
@@ -40,17 +61,6 @@ export default {
 
       return dateString
     }
-  },
-  data () {
-    return {
-      dialog: false,
-      picker: new Date().toISOString().substr(0, 10),
-      landscape: false,
-      reactive: false
-    }
-  },
-  mount () {
-
   }
 }
 </script>

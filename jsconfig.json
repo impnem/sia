@@ -4,12 +4,6 @@
     "module": "esnext",
     "baseUrl": "./",
     "forceConsistentCasingInFileNames": false, // 이름 바꿀 때 에러나서 추가함.
-    "vueCompilerOptions": {
-      "experimentalDisableTemplateSupport": true // TypeScript intellisense is disabled on template 밑줄 제거1
-    },
-    "compilerOptions": {
-      "jsx": "preserve"  // TypeScript intellisense is disabled on template 밑줄 제거2
-    },
     "moduleResolution": "node",
     "paths": {
       "@/*": [
@@ -21,6 +15,10 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
-  }
+    ],
+    "jsx": "preserve"  // TypeScript intellisense is disabled on template 밑줄 제거2
+  },
+  "vueCompilerOptions": {
+    "experimentalDisableTemplateSupport": true // TypeScript intellisense is disabled on template 밑줄 제거1
+  },
 }
