@@ -85,6 +85,9 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
     changeDate: (state, payload) => { // 날짜 변경시 작동
       state.date = payload
     },
+    changeTitle: (state, payload) => {
+      state.site.title = payload
+    },
     changeMenuTitleM: (state, payload) => {
       state.menu.push(payload)
     }

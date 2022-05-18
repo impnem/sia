@@ -44,25 +44,18 @@ export default {
     }
   },
   computed: {
+    ...mapState(['site']),
     ...mapGetters({
       count: 'menuCount',
       homes: 'countOfHome',
       percent: 'percentOfHome'
-    }),
-    ...mapState(['site'])
-    // ...mapGetters(['menuCount', 'countOfHome', 'percentOfHome'])
+    })
   },
   methods: {
-    ...mapMutations(['changeMenuTitleM']),
+    ...mapMutations(['changeTitle']),
     ...mapActions(['changeMenuTitleA']),
     menuClick (titleName) {
-      console.log('emit ' + titleName)
-      // EventBus.$emit('menuClick', titleName)
-
-      // this.$store.commit('changeMenuTitleM', titleName) import 없이 Mutations 방식
-
-      // this.$store.dispatch('changeMenuTitleA', titleName)
-      this.changeMenuTitleA()
+      this.changeTitle(titleName)
     }
   }
 }
