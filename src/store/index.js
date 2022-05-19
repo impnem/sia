@@ -63,9 +63,25 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
     }
   },
   getters: { // computed의 기능을 함 - computed와 다른 점은 함수에게 어떤 것을 쓸 것인지 알려줘야 한다.
-    fsRandom: state => { // 명언 랜덤으로 가져오기
-      const fsRand = Math.floor(Math.random() * (Object.keys(state.data.fs).length))
-      return fsRand
+    initDate: (state) => { // 초기 날짜 오늘로 변경
+      const today = new Date()
+
+      const year = today.getFullYear()
+      const month = ('0' + (today.getMonth() + 1)).slice(-2)
+      const day = ('0' + today.getDate()).slice(-2)
+
+      const dateString = year + '-' + month + '-' + day
+      state.date = dateString
+
+      return dateString
+    },
+    fsIndex: state => { // 명언 인덱스 랜덤으로 가져오기
+      const fsIndex = Math.floor(Math.random() * (Object.keys(state.data.fs).length))
+      return fsIndex
+    },
+    dsDate: state => { // 날짜에 해당하는 하루공부 가져오기
+      const dsDate = 1
+      return dsDate
     },
     menuCount: state => { // arrow function
       return state.site.menu.length
@@ -85,7 +101,7 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
     changeDate: (state, payload) => { // 날짜 변경시 작동
       state.date = payload
     },
-    changeTitle: (state, payload) => {
+    changeTitle: (state, payload) => { // 타이틀 변경시 작동
       state.site.title = payload
     },
     changeMenuTitleM: (state, payload) => {

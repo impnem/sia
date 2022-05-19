@@ -1,5 +1,17 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <daily-study-main></daily-study-main>
 </template>
+
+<script>
+import DailyStudyMain from '@/components/DailyStudy/DailyStudyMain.vue'
+
+export default {
+  components: {
+    DailyStudyMain
+  }
+}
+</script>
+
+<style>
+
+</style>

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     ...mapMutations(['changeTitle']),
-    ...mapActions(['changeMenuTitleA']),
     menuClick (titleName) {
       this.changeTitle(titleName)
     }

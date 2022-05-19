@@ -9,10 +9,10 @@
       >
         <v-card-text class="my-4 text-center text-h6 text-display-2 fourthly--text">
           <div>
-            {{ fsOne[fsRandom].fSaying }}
+            {{ fsOne[fsIndex].fSaying }}
             <br/>
             <br/>
-            - {{ fsOne[fsRandom].author }} -
+            - {{ fsOne[fsIndex].author }} -
           </div>
         </v-card-text>
       </v-card>
@@ -31,7 +31,7 @@ export default {
     ...mapState({
       fsOne: state => state.data.fs
     }),
-    ...mapGetters(['fsRandom'])
+    ...mapGetters(['fsIndex'])
   }
 }
 </script>

@@ -7,7 +7,7 @@
       x-large
       @click="dialog = true"
     >
-      {{ date == null ? getDate : date }}
+      {{ date == null ? initDate : date }}
     </v-btn>
     <v-dialog
       v-model="dialog"
@@ -17,18 +17,18 @@
       <v-date-picker
         full-width
         v-model="picker"
-        @dblclick:date="dateClick"
+        @dblclick:date="clickDate"
         >
         <v-spacer></v-spacer>
         <v-btn text color="primary" @click="dialog = false">Cancel</v-btn>
-        <v-btn text color="primary" @click="dateClick(picker)">OK</v-btn>
+        <v-btn text color="primary" @click="clickDate(picker)">OK</v-btn>
       </v-date-picker>
     </v-dialog>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -40,8 +40,11 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['changeDate']),
-    dateClick (selectedDate) {
+    ...mapMutations([
+      'changeDate'
+    ]),
+
+    clickDate (selectedDate) { // 클릭이벤트시 date 값 변경
       this.changeDate(selectedDate)
       this.dialog = false
     }
@@ -50,17 +53,9 @@ export default {
     ...mapState({
       date: state => state.date
     }),
-    getDate: () => { // 오늘 날짜 yyyy-mm-dd
-      const today = new Date()
-
-      const year = today.getFullYear()
-      const month = ('0' + (today.getMonth() + 1)).slice(-2)
-      const day = ('0' + today.getDate()).slice(-2)
-
-      const dateString = year + '-' + month + '-' + day
-
-      return dateString
-    }
+    ...mapGetters([
+      'initDate'
+    ])
   }
 }
 </script>
