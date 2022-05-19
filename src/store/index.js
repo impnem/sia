@@ -49,15 +49,23 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       ds: {
         ds0516: {
           subject: '주가 폭락16',
-          src: 'https://www.youtube.com/watch?v=kwtU0TjhyoI'
+          src: 'kwtU0TjhyoI'
         },
         ds0517: {
           subject: '주가 폭락17',
-          src: 'https://www.youtube.com/watch?v=kwtU0TjhyoI'
+          src: 'kwtU0TjhyoI'
         },
         ds0518: {
           subject: '주가 폭락18',
-          src: 'https://www.youtube.com/watch?v=kwtU0TjhyoI'
+          src: 'kwtU0TjhyoI'
+        },
+        ds0519: {
+          subject: '주가 폭락18',
+          src: 'kwtU0TjhyoI'
+        },
+        ds0520: {
+          subject: '주가 폭락18',
+          src: 'kwtU0TjhyoI'
         }
       }
     }
@@ -79,9 +87,12 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       const fsIndex = Math.floor(Math.random() * (Object.keys(state.data.fs).length))
       return fsIndex
     },
-    dsDate: state => { // 날짜에 해당하는 하루공부 가져오기
-      const dsDate = 1
-      return dsDate
+    dsDate: state => { // 날짜에 해당하는 dsmmss 가져오기
+      const selectedDate = state.date
+      const modifyDate = selectedDate.replaceAll('-', '').substr(4, 7)
+      const dsmmdd = 'ds' + modifyDate
+
+      return dsmmdd
     },
     menuCount: state => { // arrow function
       return state.site.menu.length
