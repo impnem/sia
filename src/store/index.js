@@ -90,11 +90,11 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
           src: 'kwtU0TjhyoI'
         },
         ds0519: {
-          subject: '주가 폭락18',
+          subject: '주가 폭락19',
           src: 'kwtU0TjhyoI'
         },
         ds0520: {
-          subject: '주가 폭락18',
+          subject: '주가 폭락20',
           src: 'kwtU0TjhyoI'
         }
       }
