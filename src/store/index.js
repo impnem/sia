@@ -17,8 +17,38 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
         },
         {
           title: 'Daily Study',
-          icon: 'mdi-book-open-page-variant',
+          icon: 'mdi-lead-pencil',
           to: '/dailyStudy'
+        },
+        {
+          title: 'Routine',
+          icon: 'mdi-order-bool-descending-variant',
+          to: '/routine'
+        },
+        {
+          title: 'Polaris',
+          icon: 'mdi-circle-slice-1',
+          to: '/polaris'
+        },
+        {
+          title: 'Book',
+          icon: 'mdi-book-open-page-variant',
+          to: '/book'
+        },
+        {
+          title: 'Workout',
+          icon: 'mdi-dumbbell',
+          to: '/Workout'
+        },
+        {
+          title: 'Financial Ledger',
+          icon: 'mdi-calculator-variant-outline',
+          to: '/financialLedger'
+        },
+        {
+          title: 'About',
+          icon: 'mdi-information',
+          to: '/about'
         }
       ]
     },
