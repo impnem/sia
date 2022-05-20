@@ -1,5 +1,9 @@
 <template>
-  <v-row class="fill-height" align-content="center" justify="center" dense>
+  <v-row
+    class="fill-height"
+    align-content="center"
+    justify="center"
+  >
     <v-col cols="12">
       <v-card
         class="mx-auto d-flex flex-column justify-center"
