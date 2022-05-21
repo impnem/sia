@@ -1,28 +1,51 @@
 <template>
   <v-container
-    color="thirdly"
-    class="text-center">
-    <v-row></v-row>
-    <v-row
-      :justify="center"
-    >
+    justify-center
+    fill-Height
+    fluid
+  >
+    <v-row>
       <v-col
-        v-for="k in img"
-        :key="k"
-        md="2"
-        class="justify-center"
+        cols="12"
+      >
+        <v-card>
+          <v-card-title>앱 소개</v-card-title>
+          <v-divider class="mx-4"></v-divider>
+          <v-card-text>
+            자기계발을 하나의 앱에서 관리할 수 있으면 좋겠다고 생각하여 만들게 되었다.
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col
+        cols="12"
+      >
+        <v-card>
+          <v-card-title>사용 기술 스택</v-card-title>
+        </v-card>
+      </v-col>
+      <v-col
+        v-for="i in img"
+        :key="i"
+        class=""
+        sm="auto"
+        md="auto"
+        lg="auto"
       >
         <v-card
-          class="pa-4 mx-auto d-flex flex-column justify-center"
           outlined
-          tile
         >
           <v-img
-            width="100px"
-            height="100px"
-            :src="k.src"
+            width="130px"
+            height="130px"
+            class="mx-auto align-center"
+            :src="i.src"
           >
-            <div class="text-h6">{{ k.title }}</div>
+            <v-card-title
+              class="text-button justify-center"
+              style="text-shadow: rgb(0 0 0 / 100%) 1px 1px 1px"
+            >
+              {{ i.title }}
+            </v-card-title>
           </v-img>
         </v-card>
       </v-col>
@@ -34,13 +57,6 @@
 export default {
   data () {
     return {
-      justify: [
-        'start',
-        'center',
-        'end',
-        'space-around',
-        'space-between'
-      ],
       img: [
         {
           title: 'HTML5',
