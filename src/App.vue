@@ -3,15 +3,22 @@
     <v-app-bar
       app
       color="fourthly"
-      dark
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        @click="drawer = !drawer"
+      >
+      </v-app-bar-nav-icon>
       <site-title></site-title>
       <v-spacer/>
       <date-picker></date-picker>
       <dark-mode></dark-mode>
     </v-app-bar>
-    <v-navigation-drawer app v-model="drawer" width="350" color="secondary">
+    <v-navigation-drawer
+      app
+      v-model="drawer"
+      width="350"
+      color="secondary"
+    >
       <site-menu></site-menu>
     </v-navigation-drawer>
     <v-main>

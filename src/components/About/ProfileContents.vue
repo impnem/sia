@@ -42,7 +42,7 @@
           >
             <v-card-title
               class="text-button justify-center"
-              style="text-shadow: rgb(0 0 0 / 100%) 1px 1px 1px"
+              :style="color == 'light' ? skillText.light : skillText.dark"
             >
               {{ i.title }}
             </v-card-title>
@@ -54,9 +54,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
+      skillText: {
+        dark: 'text-shadow: rgb(0 0 0 / 100%) 1px 1px 1px',
+        light: 'text-shadow: rgb(255 255 255 / 100%) 1px 1px 1px'
+      },
       img: [
         {
           title: 'HTML5',
@@ -88,6 +94,11 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapState({
+      color: state => state.local.mode.color
+    })
   }
 }
 </script>
