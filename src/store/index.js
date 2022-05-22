@@ -6,7 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
   state: { // data의 기능을 함
     local: {
-      date: null
+      date: null,
+      mode: {
+        color: null
+      }
     },
     site: {
       title: 'Home',
@@ -141,6 +144,21 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
     }
   },
   mutations: { // 변화(변이), state를 변화, commit 사용, 통상적으로 payload:짐 사용, 모든 것은 동기로 작동, 비동기 로직은 actions에서 사용
+    setMode: (state, payload) => { // 라이트 & 다크 모드 현재값 입력
+      state.local.mode.color = payload
+    },
+    changeMode: (state, payload) => { // 라이트 & 다크 모드 토글
+      let color = null
+      if (payload === 'light') {
+        color = 'dark'
+      } else if (payload === 'dark') {
+        color = 'light'
+      } else {
+        color = 'light'
+      }
+      localStorage.setItem('mode', color)
+      state.local.mode.color = color
+    },
     changeDate: (state, payload) => { // 날짜 변경시 작동
       state.local.date = payload
     },
