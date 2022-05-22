@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     ...mapState({
-      date: state => state.date,
+      date: state => state.local.date,
       ds: state => state.data.ds
     }),
     ...mapGetters([

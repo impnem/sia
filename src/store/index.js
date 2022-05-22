@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
   state: { // data의 기능을 함
-    date: null,
+    local: {
+      date: null
+    },
     site: {
       title: 'Home',
       footer: 'Copyright 2022. impnem. All RIGHTS RESERVED',
@@ -109,7 +111,7 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       const day = ('0' + today.getDate()).slice(-2)
 
       const dateString = year + '-' + month + '-' + day
-      state.date = dateString
+      state.local.date = dateString
 
       return dateString
     },
@@ -118,7 +120,7 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       return fsIndex
     },
     dsDate: state => { // 날짜에 해당하는 dsmmss 가져오기
-      const selectedDate = state.date
+      const selectedDate = state.local.date
       const modifyDate = selectedDate.replaceAll('-', '').substr(4, 7)
       const dsmmdd = 'ds' + modifyDate
 
@@ -140,7 +142,7 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
   },
   mutations: { // 변화(변이), state를 변화, commit 사용, 통상적으로 payload:짐 사용, 모든 것은 동기로 작동, 비동기 로직은 actions에서 사용
     changeDate: (state, payload) => { // 날짜 변경시 작동
-      state.date = payload
+      state.local.date = payload
     },
     changeTitle: (state, payload) => { // 타이틀 변경시 작동
       state.site.title = payload
