@@ -11,7 +11,7 @@
         max-width="350"
         color="memo"
       >
-        <v-card-text class="my-4 text-center text-h6 text-display-2 fourthly--text">
+        <v-card-text class="my-4 text-center text-h6 font-weight-bold custom--text">
           <div>
             {{ fsOne[fsIndex].fSaying }}
             <br/>
