@@ -9,7 +9,7 @@
         cols="12"
       >
         <v-card>
-          <v-card-title>앱 소개</v-card-title>
+          <v-card-title>Introduce</v-card-title>
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
             자기계발을 하나의 앱에서 관리할 수 있으면 좋겠다고 생각하여 만들게 되었다.
@@ -20,19 +20,18 @@
         cols="12"
       >
         <v-card>
-          <v-card-title>사용 기술 스택</v-card-title>
+          <v-card-title>Tech Stacks</v-card-title>
         </v-card>
       </v-col>
       <v-col
         v-for="i in img"
         :key="i"
-        class=""
         sm="auto"
         md="auto"
         lg="auto"
       >
         <v-card
-          outlined
+          class=""
         >
           <v-img
             width="130px"
@@ -47,6 +46,24 @@
               {{ i.title }}
             </v-card-title>
           </v-img>
+        </v-card>
+      </v-col>
+      <v-col
+        cols="12"
+      >
+        <v-card>
+          <v-card-title>links</v-card-title>
+          <v-divider class="mx-4"></v-divider>
+          <v-btn
+            v-for="l in link"
+            :key="l"
+            :href="l.src"
+            target="_blank"
+            class="ml-4 my-4"
+          >
+            <v-icon>{{ l.icon }}</v-icon>
+            {{ l.title }}
+          </v-btn>
         </v-card>
       </v-col>
     </v-row>
@@ -91,6 +108,18 @@ export default {
         {
           title: 'Firebase',
           src: require('@/assets/About/firebase.png')
+        }
+      ],
+      link: [
+        {
+          icon: 'mdi-github',
+          title: 'Github',
+          src: 'https://github.com/impnem/sia'
+        },
+        {
+          icon: 'mdi-alpha-t-circle',
+          title: 'Tistory',
+          src: 'https://impnem.tistory.com/'
         }
       ]
     }
