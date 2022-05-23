@@ -164,15 +164,21 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       state.local.date = payload
     },
     changeTitle: (state, payload) => { // 타이틀 변경시 작동
-      if (payload.substr(0, 1) === '/') { // 라우팅된 주소로 들어올 때 이벤트
-        for (let i = 0; i < state.site.menu.length; i++) {
-          if (state.site.menu[i].to === payload) {
-            state.site.title = state.site.menu[i].title
-            break
-          }
+      // if (payload.substr(0, 1) === '/') { // 라우팅된 주소로 들어올 때 이벤트
+      //   for (let i = 0; i < state.site.menu.length; i++) {
+      //     if (state.site.menu[i].to === payload) {
+      //       state.site.title = state.site.menu[i].title
+      //       break
+      //     }
+      //   }
+      // } else { // 메뉴를 클릭할 때 이벤트 - 더 이상 사용되지 않음
+      //   state.site.title = payload
+      // }
+      for (let i = 0; i < state.site.menu.length; i++) {
+        if (state.site.menu[i].to === payload) {
+          state.site.title = state.site.menu[i].title
+          break
         }
-      } else { // 메뉴를 클릭할 때 이벤트
-        state.site.title = payload
       }
     }
   },

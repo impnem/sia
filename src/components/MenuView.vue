@@ -20,7 +20,6 @@
         v-for="(item, i) in site.menu"
         :key="i"
         :to="item.to"
-        @click="menuClick(item.title)"
       >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
@@ -35,7 +34,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -50,12 +49,6 @@ export default {
       homes: 'countOfHome',
       percent: 'percentOfHome'
     })
-  },
-  methods: {
-    ...mapMutations(['changeTitle']),
-    menuClick (titleName) {
-      this.changeTitle(titleName)
-    }
   }
 }
 </script>

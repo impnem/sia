@@ -1,26 +1,40 @@
 <template>
-  <v-container color="thirdly" class="text-center">
+  <v-container
+    color="thirdly"
+    class="text-center"
+    fill-height
+    xs="my-auto"
+    sm="my-auto"
+  >
     <v-row>
-      <v-col>
-        오늘의 하루공부<br/>
+      <v-col
+        cols="12"
+        class="text-h5"
+      >
+        오늘의 하루공부
       </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      <v-col
+        cols="12"
+        class="text-body-1"
+      >
         {{ ds[dsDate].subject }}
       </v-col>
+      <v-col cols="12" >
+        <div>
+        <iframe
+          :width="iframeSize.width"
+          :height="iframeSize.height"
+          max-width="1185px"
+          :src="'https://www.youtube.com/embed/' + ds[dsDate].src"
+          :resize="handleResize()"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        </div>
+      </v-col>
     </v-row>
-    <div>
-      <iframe
-        :width="youtubeSize.x"
-        :height="youtubeSize.y"
-        :src="'https://www.youtube.com/embed/' + ds[dsDate].src"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    </div>
   </v-container>
 </template>
 
@@ -30,19 +44,47 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      youtubeSize: {
-        x: 0,
-        y: 0
+      iframeSize: {
+        width: 0,
+        height: 0
       }
     }
   },
   mounted () {
-    this.onResize()
+    console.log('m')
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy () {
+    console.log('D')
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    onResize () {
-      this.youtubeSize = { x: window.innerWidth - 20, y: window.innerWidth * 0.625 }
-      // 20을 빼준 이유는 약간의 여유공간을 두어 화면에 스크롤이 생기지 않게 하기 위함이고, 0.625를 곱한 건 화면비를 16:10으로 유지하기 위함임
+    handleResize () { // 유튜브 동영상 사이즈 반응형
+      if (window.innerWidth < 960) { // xs, sm (폰, 미니 & 중간 태블릿)
+        console.log('960')
+        this.iframeSize = {
+          width: window.innerWidth - 50,
+          height: window.innerWidth * 0.5625
+        }
+      } else if (window.innerWidth < 1264) { // md (큰 태블릿)
+        console.log('1184')
+        this.iframeSize = {
+          width: 876,
+          height: 876 * 0.5625
+        }
+      } else if (window.innerWidth < 1552) { // lg (데스크탑), navi가 나오는 시점
+        console.log('1184')
+        this.iframeSize = {
+          width: 876,
+          height: 876 * 0.5625
+        }
+      } else { // lg, xl(4k & ultra-wide)
+        console.log('1185')
+        this.iframeSize = {
+          width: 1161,
+          height: 1161 * 0.5625
+        }
+      }
     }
   },
   computed: {
@@ -57,6 +99,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
