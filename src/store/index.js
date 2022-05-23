@@ -83,8 +83,8 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       ],
       ds: {
         ds0516: {
-          subject: '주가 폭락16',
-          src: 'kwtU0TjhyoI'
+          subject: '습관을 바꾸고 싶다면 무조건 적어라',
+          src: 'TBexO_Dzm4o'
         },
         ds0517: {
           subject: '주가 폭락17',
@@ -123,10 +123,11 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       return fsIndex
     },
     dsDate: state => { // 날짜에 해당하는 dsmmss 가져오기
-      const selectedDate = state.local.date
-      const modifyDate = selectedDate.replaceAll('-', '').substr(4, 7)
-      const dsmmdd = 'ds' + modifyDate
-
+      // const selectedDate = state.local.date
+      // const modifyDate = selectedDate.replaceAll('-', '').substr(4, 7)
+      // const dsmmdd = 'ds' + modifyDate
+      // 임시
+      const dsmmdd = 'ds0516'
       return dsmmdd
     },
     menuCount: state => { // arrow function
@@ -163,10 +164,16 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       state.local.date = payload
     },
     changeTitle: (state, payload) => { // 타이틀 변경시 작동
-      state.site.title = payload
-    },
-    changeMenuTitleM: (state, payload) => {
-      state.menu.push(payload)
+      if (payload.substr(0, 1) === '/') { // 라우팅된 주소로 들어올 때 이벤트
+        for (let i = 0; i < state.site.menu.length; i++) {
+          if (state.site.menu[i].to === payload) {
+            state.site.title = state.site.menu[i].title
+            break
+          }
+        }
+      } else { // 메뉴를 클릭할 때 이벤트
+        state.site.title = payload
+      }
     }
   },
   actions: { // mutations을 동작시키는 비즈니스 로직은 actions에 넣음, dispatch 사용

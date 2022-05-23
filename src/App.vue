@@ -75,13 +75,19 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'setMode'
+      'setMode',
+      'changeTitle'
     ])
   },
   computed: {
     ...mapState({
       color: state => state.local.mode.color
     })
+  },
+  watch: { // 현재 페이지를 감지하여 타이틀 변경
+    '$route' (to, from) {
+      this.changeTitle(to.path)
+    }
   }
 }
 </script>
