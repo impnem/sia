@@ -9,6 +9,19 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       date: null,
       mode: {
         color: null
+      },
+      data: {
+        fs: [
+          {
+            author: '세종대왕', fSaying: '믿음'
+          },
+          {
+            author: '이순신', fSaying: '경쟁'
+          },
+          {
+            author: '유관순', fSaying: '정의'
+          }
+        ]
       }
     },
     site: {
@@ -70,17 +83,6 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       }
     },
     data: {
-      fs: [
-        {
-          author: '세종대왕', fSaying: '믿음'
-        },
-        {
-          author: '이순신', fSaying: '경쟁'
-        },
-        {
-          author: '유관순', fSaying: '정의'
-        }
-      ],
       ds: {
         ds0516: {
           subject: '습관을 바꾸고 싶다면 무조건 적어라',
@@ -119,7 +121,7 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       return dateString
     },
     fsIndex: state => { // 명언 인덱스 랜덤으로 가져오기
-      const fsIndex = Math.floor(Math.random() * (Object.keys(state.data.fs).length))
+      const fsIndex = Math.floor(Math.random() * (Object.keys(state.local.data.fs).length))
       return fsIndex
     },
     dsDate: state => { // 날짜에 해당하는 dsmmss 가져오기

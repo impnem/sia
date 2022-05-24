@@ -80,7 +80,17 @@ export default {
     ...mapMutations([
       'setMode',
       'changeTitle'
-    ])
+    ]),
+    async save () {
+      try {
+        const db = this.$firebaseDB.getDatabase()
+        await this.$firebaseDB.set(this.$firebaseDB.ref(db, 'site/'), {
+          footer: this.text
+        })
+      } finally { // catch 삭제함
+        this.dialog = false
+      }
+    }
   },
   computed: {
     ...mapState({

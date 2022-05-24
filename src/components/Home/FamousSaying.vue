@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     ...mapState({
-      fsOne: state => state.data.fs
+      fsOne: state => state.local.data.fs
     }),
     ...mapGetters(['fsIndex'])
   }
