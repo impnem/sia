@@ -74,26 +74,17 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$firebase)
   },
   methods: {
     ...mapMutations([
       'setMode',
       'changeTitle'
-    ]),
-    async save () {
-      try {
-        const db = this.$firebaseDB.getDatabase()
-        await this.$firebaseDB.set(this.$firebaseDB.ref(db, 'site/'), {
-          footer: this.text
-        })
-      } finally { // catch 삭제함
-        this.dialog = false
-      }
-    }
+    ])
+
   },
   computed: {
     ...mapState({
+      server: state => state.server,
       color: state => state.local.mode.color
     })
   },
@@ -104,3 +95,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  /* 스크롤바 숨기기 */
+  html {
+    overflow-y: hidden !important;
+  }
+</style>

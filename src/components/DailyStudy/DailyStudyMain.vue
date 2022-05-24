@@ -51,35 +51,29 @@ export default {
     }
   },
   mounted () {
-    console.log('m')
     window.addEventListener('resize', this.handleResize)
   },
   beforeDestroy () {
-    console.log('D')
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     handleResize () { // 유튜브 동영상 사이즈 반응형
       if (window.innerWidth < 960) { // xs, sm (폰, 미니 & 중간 태블릿)
-        console.log('960')
         this.iframeSize = {
           width: window.innerWidth - 50,
           height: window.innerWidth * 0.5625
         }
       } else if (window.innerWidth < 1264) { // md (큰 태블릿)
-        console.log('1184')
         this.iframeSize = {
           width: 876,
           height: 876 * 0.5625
         }
       } else if (window.innerWidth < 1552) { // lg (데스크탑), navi가 나오는 시점
-        console.log('1184')
         this.iframeSize = {
           width: 876,
           height: 876 * 0.5625
         }
       } else { // lg, xl(4k & ultra-wide)
-        console.log('1185')
         this.iframeSize = {
           width: 1161,
           height: 1161 * 0.5625
