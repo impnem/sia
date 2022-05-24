@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
   state: { // data의 기능을 함
+    fireUser: null,
     local: {
       date: null,
       mode: {
@@ -211,11 +212,15 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
         }
       }
     },
-    addFamousSaying: (state, payload) => {
+    addFamousSaying: (state, payload) => { // 명언 추가하기
       state.local.data.fs.push(payload)
     },
-    deleteFamousSaying: (state, payload) => {
+    deleteFamousSaying: (state, payload) => { // 명언 삭제하기
       delete state.local.data.fs[payload]
+    },
+    setFireUser: (state, payload) => { // 로그인 정보
+      console.log('ok')
+      state.fireUser = payload
     }
   },
   actions: { // mutations을 동작시키는 비즈니스 로직은 actions에 넣음, dispatch 사용

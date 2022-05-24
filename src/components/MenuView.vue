@@ -1,20 +1,7 @@
 <template>
   <div>
-    <v-list-item two-line>
-      <v-list-item-avatar>
-        <img src="https://randomuser.me/api/portraits/women/81.jpg">
-      </v-list-item-avatar>
-
-      <v-list-item-content>
-        <v-list-item-title>Jane Smith</v-list-item-title>
-        <v-list-item-subtitle>Logged In</v-list-item-subtitle>
-        <v-list-item-subtitle>메뉴의 수 : {{ count }}</v-list-item-subtitle>
-        <v-list-item-subtitle>홈의 갯수 : {{ homes }}({{ percent }}%)</v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
-
+    <site-sign></site-sign>
     <v-divider></v-divider>
-
     <v-list>
       <v-list-item
         v-for="(item, i) in site.menu"
@@ -35,12 +22,16 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import SiteSign from '@/components/User/signView.vue'
 
 export default {
   data () {
     return {
 
     }
+  },
+  components: {
+    SiteSign
   },
   computed: {
     ...mapState({

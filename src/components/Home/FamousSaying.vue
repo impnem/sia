@@ -120,18 +120,20 @@
             <v-list-item-title>{{ fsOne.fSaying }}</v-list-item-title>
             <v-list-item-subtitle>{{ fsOne.author }}</v-list-item-subtitle>
           </v-list-item-content>
-          <v-btn
-            icon
-            @click="openAddModFsDialog(i)"
-          >
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn>
-          <v-btn
-            icon
-            @click="deleteFs(i)"
-          >
-            <v-icon>mdi-trash-can</v-icon>
-          </v-btn>
+          <v-card-actions>
+            <v-btn
+              icon
+              @click="openAddModFsDialog(i)"
+            >
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              @click="deleteFs(i)"
+            >
+              <v-icon>mdi-trash-can</v-icon>
+            </v-btn>
+          </v-card-actions>
         </v-list-item>
       </v-card>
     </v-dialog>
@@ -172,7 +174,7 @@ export default {
       }
       this.addModFsDialog = true
     },
-    saveFs () {
+    async saveFs () {
       const index = this.selectedFsIndex
       if (index < 0) {
         this.addFamousSaying(this.fsForm) // 새로 작성한 명언 추가
@@ -182,7 +184,7 @@ export default {
       }
       this.addModFsDialog = false
     },
-    deleteFs (index) {
+    async deleteFs (index) {
       this.deleteFamousSaying(index)
     }
   },
