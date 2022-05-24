@@ -73,6 +73,9 @@ export default {
       this.$vuetify.theme.light = true
     }
   },
+  mounted () {
+    console.log(this.$firebase)
+  },
   methods: {
     ...mapMutations([
       'setMode',
