@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn
-      color="button"
+      color="icon"
       depressed
       icon
       large

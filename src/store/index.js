@@ -75,12 +75,38 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
         user1: {
           userId: 'user1',
           userPw: 'abcd1',
-          userNickname: 'user11'
+          userNickname: 'user11',
+          userData: {
+            fs: [
+              {
+                author: '세종대왕', fSaying: '믿음'
+              },
+              {
+                author: '이순신', fSaying: '경쟁'
+              },
+              {
+                author: '유관순', fSaying: '정의'
+              }
+            ]
+          }
         },
         user2: {
           userId: 'user2',
           userPw: 'abcd2',
-          userNickname: 'user22'
+          userNickname: 'user22',
+          userData: {
+            fs: [
+              {
+                author: '세종대왕', fSaying: '믿음'
+              },
+              {
+                author: '이순신', fSaying: '경쟁'
+              },
+              {
+                author: '유관순', fSaying: '정의'
+              }
+            ]
+          }
         }
       },
       data: {
@@ -184,6 +210,12 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
           break
         }
       }
+    },
+    addFamousSaying: (state, payload) => {
+      state.local.data.fs.push(payload)
+    },
+    deleteFamousSaying: (state, payload) => {
+      delete state.local.data.fs[payload]
     }
   },
   actions: { // mutations을 동작시키는 비즈니스 로직은 actions에 넣음, dispatch 사용
