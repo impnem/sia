@@ -43,21 +43,28 @@
           <v-btn @click="addModDialog=false" icon><v-icon>mdi-close</v-icon></v-btn>
         </v-card-title>
         <v-card-text>
-          <v-row>
-            <v-col cols="2">
-              <v-icon v-text="fsForm.icon" required></v-icon>
-            </v-col>
-            <v-col cols="10">
+          <v-row psadles>
+            <v-col cols="12">
               <v-text-field
-                v-model="fsForm.icon"
-                label="mdi icon"
+                v-model="fsForm.author"
+                label="명언"
                 outlined
                 clearable
                 required
+                hide-details
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                v-model="fsForm.fSaying"
+                label="저자"
+                outlined
+                clearable
+                required
+                hide-details
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-text-field v-model="fsForm.title" label="아이템 이름" outlined hide-details></v-text-field>
         </v-card-text>
       </v-card>
     </v-dialog>

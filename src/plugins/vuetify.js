@@ -46,6 +46,7 @@ export default new Vuetify({
         secondary: '#ffffff',
         thirdly: '#f2f4f7',
         fourthly: '#eaedf1',
+        button: '#343746',
         custom: '#21222c',
         memo: '#e6b905'
       },
@@ -54,6 +55,7 @@ export default new Vuetify({
         secondary: '#343746',
         thirdly: '#282a36',
         fourthly: '#21222c',
+        button: '#ffffff',
         custom: '#21222c',
         memo: '#e6b905'
       }
