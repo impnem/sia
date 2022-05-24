@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     ...mapState({
-      title: state => state.site.title
+      title: state => state.server.site.title
     })
   }
 }

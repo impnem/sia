@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     ...mapState({
-      footer: state => state.site.footer
+      footer: state => state.server.site.footer
     })
   }
 }

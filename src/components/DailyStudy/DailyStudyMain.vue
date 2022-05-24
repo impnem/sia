@@ -90,7 +90,7 @@ export default {
   computed: {
     ...mapState({
       date: state => state.local.date,
-      ds: state => state.data.ds
+      ds: state => state.server.data.ds
     }),
     ...mapGetters([
       'dsDate'

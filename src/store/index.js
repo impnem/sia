@@ -24,85 +24,87 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
         ]
       }
     },
-    site: {
-      title: 'Home',
-      footer: 'Copyright 2022. impnem. All RIGHTS RESERVED',
-      menu: [
-        {
-          title: 'Home',
-          icon: 'mdi-home',
-          to: '/'
-        },
-        {
-          title: 'Daily Study',
-          icon: 'mdi-lead-pencil',
-          to: '/dailyStudy'
-        },
-        {
-          title: 'Routine',
-          icon: 'mdi-order-bool-descending-variant',
-          to: '/routine'
-        },
-        {
-          title: 'Polaris',
-          icon: 'mdi-circle-slice-1',
-          to: '/polaris'
-        },
-        {
-          title: 'Book',
-          icon: 'mdi-book-open-page-variant',
-          to: '/book'
-        },
-        {
-          title: 'Workout',
-          icon: 'mdi-dumbbell',
-          to: '/Workout'
-        },
-        {
-          title: 'Financial Ledger',
-          icon: 'mdi-calculator-variant-outline',
-          to: '/financialLedger'
-        },
-        {
-          title: 'About',
-          icon: 'mdi-information',
-          to: '/about'
-        }
-      ]
-    },
-    user: {
-      user1: {
-        userId: 'user1',
-        userPw: 'abcd1',
-        userNickname: 'user11'
+    server: {
+      site: {
+        title: 'Home',
+        footer: 'Copyright 2022. impnem. All RIGHTS RESERVED',
+        menu: [
+          {
+            title: 'Home',
+            icon: 'mdi-home',
+            to: '/'
+          },
+          {
+            title: 'Daily Study',
+            icon: 'mdi-lead-pencil',
+            to: '/dailyStudy'
+          },
+          {
+            title: 'Routine',
+            icon: 'mdi-order-bool-descending-variant',
+            to: '/routine'
+          },
+          {
+            title: 'Polaris',
+            icon: 'mdi-circle-slice-1',
+            to: '/polaris'
+          },
+          {
+            title: 'Book',
+            icon: 'mdi-book-open-page-variant',
+            to: '/book'
+          },
+          {
+            title: 'Workout',
+            icon: 'mdi-dumbbell',
+            to: '/Workout'
+          },
+          {
+            title: 'Financial Ledger',
+            icon: 'mdi-calculator-variant-outline',
+            to: '/financialLedger'
+          },
+          {
+            title: 'About',
+            icon: 'mdi-information',
+            to: '/about'
+          }
+        ]
       },
-      user2: {
-        userId: 'user2',
-        userPw: 'abcd2',
-        userNickname: 'user22'
-      }
-    },
-    data: {
-      ds: {
-        ds0516: {
-          subject: '습관을 바꾸고 싶다면 무조건 적어라',
-          src: 'TBexO_Dzm4o'
+      user: {
+        user1: {
+          userId: 'user1',
+          userPw: 'abcd1',
+          userNickname: 'user11'
         },
-        ds0517: {
-          subject: '주가 폭락17',
-          src: 'kwtU0TjhyoI'
-        },
-        ds0518: {
-          subject: '주가 폭락18',
-          src: 'kwtU0TjhyoI'
-        },
-        ds0519: {
-          subject: '주가 폭락19',
-          src: 'kwtU0TjhyoI'
-        },
-        ds0520: {
-          subject: '주가 폭락20',
-          src: 'kwtU0TjhyoI'
+        user2: {
+          userId: 'user2',
+          userPw: 'abcd2',
+          userNickname: 'user22'
+        }
+      },
+      data: {
+        ds: {
+          ds0516: {
+            subject: '습관을 바꾸고 싶다면 무조건 적어라',
+            src: 'TBexO_Dzm4o'
+          },
+          ds0517: {
+            subject: '주가 폭락17',
+            src: 'kwtU0TjhyoI'
+          },
+          ds0518: {
+            subject: '주가 폭락18',
+            src: 'kwtU0TjhyoI'
+          },
+          ds0519: {
+            subject: '주가 폭락19',
+            src: 'kwtU0TjhyoI'
+          },
+          ds0520: {
+            subject: '주가 폭락20',
+            src: 'kwtU0TjhyoI'
+          }
         }
       }
     }
@@ -133,11 +135,11 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       return dsmmdd
     },
     menuCount: state => { // arrow function
-      return state.site.menu.length
+      return state.server.site.menu.length
     },
     countOfHome: state => {
       let count = 0
-      state.site.menu.forEach(menu => {
+      state.server.site.menu.forEach(menu => {
         if (menu.title === 'Home') count++
       })
       return count
@@ -176,9 +178,9 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       // } else { // 메뉴를 클릭할 때 이벤트 - 더 이상 사용되지 않음
       //   state.site.title = payload
       // }
-      for (let i = 0; i < state.site.menu.length; i++) {
-        if (state.site.menu[i].to === payload) {
-          state.site.title = state.site.menu[i].title
+      for (let i = 0; i < state.server.site.menu.length; i++) {
+        if (state.server.site.menu[i].to === payload) {
+          state.server.site.title = state.server.site.menu[i].title
           break
         }
       }

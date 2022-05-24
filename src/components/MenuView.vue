@@ -43,7 +43,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(['site']),
+    ...mapState({
+      site: state => state.server.site
+    }),
     ...mapGetters({
       count: 'menuCount',
       homes: 'countOfHome',
