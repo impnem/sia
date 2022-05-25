@@ -12,7 +12,6 @@
       <v-spacer/>
       <date-picker></date-picker>
       <dark-mode></dark-mode>
-      <v-btn @click="save"><v-icon>mdi-pencil</v-icon></v-btn>
     </v-app-bar>
     <v-navigation-drawer
       app
@@ -78,30 +77,18 @@ export default {
     }
   },
   mounted () {
-
   },
   methods: {
     ...mapMutations([
       'setMode',
       'changeTitle'
-    ]),
-    async save () {
-      try {
-        const db = this.$firebaseDB.getDatabase()
-        await this.$firebaseDB.set(this.$firebaseDB.ref(db, 'server/'), {
-          site: this.server.site,
-          user: this.server.user,
-          data: this.server.data
-        })
-      } finally { // catch 삭제함
-        this.dialog = false
-      }
-    }
+    ])
   },
   computed: {
     ...mapState({
       server: state => state.server,
-      color: state => state.local.mode.color
+      color: state => state.local.mode.color,
+      login: state => state.fireUser
     })
   },
   watch: { // 현재 페이지를 감지하여 타이틀 변경

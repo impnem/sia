@@ -5,7 +5,7 @@
         size="32"
       >
         <v-progress-circular v-if="loading" indeterminate></v-progress-circular>
-        <v-icon v-else-if="!login" center>mdi-account</v-icon>
+        <v-icon v-else-if="login === null" center>mdi-account</v-icon>
         <v-img v-else :src="login.photoURL"></v-img>
       </v-avatar>
       <v-list-item-content
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -46,6 +46,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'setFireUser'
+    ]),
     async signInWithGoogle () { // 로그인
       const provider = new this.$firebaseAuth.GoogleAuthProvider()
       const fbAuth = this.$firebaseAuth
@@ -55,8 +58,7 @@ export default {
       this.loading = true
       try {
         const snapshot = await fbAuth.signInWithPopup(fbAuth.getAuth(), provider)
-        console.log(snapshot.user)
-        this.$store.commit('setFireUser', snapshot.user)
+        this.setFireUser(snapshot.user)
       } finally {
         this.loading = false
       }
