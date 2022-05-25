@@ -12,6 +12,7 @@
       <v-spacer/>
       <date-picker></date-picker>
       <dark-mode></dark-mode>
+      <v-btn @click="save"><v-icon>mdi-pencil</v-icon></v-btn>
     </v-app-bar>
     <v-navigation-drawer
       app
@@ -50,6 +51,9 @@ export default {
     }
   },
   created () {
+    // 페이지 시작시 현재 페이지에 맞게 타이틀 변경
+    this.changeTitle(window.location.pathname)
+
     // 라이트 & 다크 모드 초기값 입력 및 로컬 저장
     const nowMode = localStorage.getItem('mode')
     if (nowMode === null) {
@@ -74,13 +78,25 @@ export default {
     }
   },
   mounted () {
+
   },
   methods: {
     ...mapMutations([
       'setMode',
       'changeTitle'
-    ])
-
+    ]),
+    async save () {
+      try {
+        const db = this.$firebaseDB.getDatabase()
+        await this.$firebaseDB.set(this.$firebaseDB.ref(db, 'server/'), {
+          site: this.server.site,
+          user: this.server.user,
+          data: this.server.data
+        })
+      } finally { // catch 삭제함
+        this.dialog = false
+      }
+    }
   },
   computed: {
     ...mapState({
@@ -89,8 +105,9 @@ export default {
     })
   },
   watch: { // 현재 페이지를 감지하여 타이틀 변경
-    '$route' (to, from) {
+    $route (to, from) {
       this.changeTitle(to.path)
+      console.log(to.path)
     }
   }
 }

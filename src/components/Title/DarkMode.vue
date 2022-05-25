@@ -31,17 +31,11 @@ export default {
     ]),
     changeTheme (color) {
       if (color === 'light') {
-        console.log('1')
         this.$vuetify.theme.light = false
         this.$vuetify.theme.dark = true
-      } else if (color === 'dark') {
-        console.log('2')
+      } else {
         this.$vuetify.theme.dark = false
         this.$vuetify.theme.light = true
-      } else {
-        console.log('3')
-        this.$vuetify.theme.light = false
-        this.$vuetify.theme.dark = true
       }
       this.changeMode(color)
     }

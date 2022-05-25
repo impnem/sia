@@ -3,26 +3,48 @@
     <site-sign></site-sign>
     <v-divider></v-divider>
     <v-list>
-      <v-list-item
+      <template
         v-for="(item, i) in site.menu"
-        :key="i"
-        :to="item.to"
       >
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
+        <template v-if="!login">
+          <v-list-item
+            v-if="i !== (site.menu.length - 1)"
+            :key="i"
+            :to="item.to"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-        <v-list-item-content>
-          <v-list-item-title >{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+            <v-list-item-content>
+              <v-list-item-title >{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        <!-- 관리자 메뉴 -->
+        <template v-if="login">
+          <v-list-item
+            v-if="i !== site.menu.length"
+            :key="i"
+            :to="item.to"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title >{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </template>
     </v-list>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import SiteSign from '@/components/User/signView.vue'
+import SiteSign from '@/components/User/SignView.vue'
 
 export default {
   data () {
@@ -33,9 +55,13 @@ export default {
   components: {
     SiteSign
   },
+  methods: {
+
+  },
   computed: {
     ...mapState({
-      site: state => state.server.site
+      site: state => state.server.site,
+      login: state => state.fireUser
     }),
     ...mapGetters({
       count: 'menuCount',

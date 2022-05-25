@@ -1,6 +1,6 @@
 <template>
   <div>
-    book 페이지 입니다.
+    admin 페이지 입니다.
   </div>
 </template>
 
