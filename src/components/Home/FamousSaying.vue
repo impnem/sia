@@ -12,13 +12,13 @@
         color="memo"
       >
         <v-card-text
-          v-if="login === null"
+          v-if="login !== null"
           class="my-4 text-center text-h6 font-weight-bold custom--text"
         >
           <div>
             {{ fsList[fsIndex].fSaying }}
-            <br/>
-            <br/>
+          <br/>
+          <br/>
             - {{ fsList[fsIndex].author }} -
           </div>
         </v-card-text>
@@ -27,10 +27,10 @@
           class="my-4 text-center text-h6 font-weight-bold custom--text"
         >
           <div>
-            {{ fsListDB[fsListDBIndex].fSaying }}
+            {{ fsLocalList[fsIndexRand].fSaying }}
             <br/>
             <br/>
-            - {{ fsListDB[fsListDBIndex].author }} -
+            - {{ fsLocalList[fsIndexRand].author }} -
           </div>
         </v-card-text>
       </v-card>
@@ -39,8 +39,10 @@
     <v-col
       v-if="login"
     >
+      <!-- 명언 100개일때 추가버튼 안보이게 -->
       <v-btn
-        class="mb-11"
+        v-if="fsList.length < 101"
+        class="mb-11 mr-16"
         absolute
         bottom
         right
@@ -50,17 +52,17 @@
         <v-icon>mdi-plus</v-icon>
       </v-btn>
       <v-btn
-        class="mr-16 mb-11"
+        class="mb-11 mr-n1"
         absolute
         bottom
         right
         fab
-        @click="fsListDialog = true"
+        @click="openFsListDialog"
       >
         <v-icon>mdi-format-list-bulleted-square</v-icon>
       </v-btn>
     </v-col>
-    <!-- 명언 추가 dialog -->
+    <!-- 명언 추가 & 수정 dialog -->
     <v-dialog
       v-model="addModFsDialog"
       max-width="400"
@@ -78,95 +80,150 @@
           </v-btn>
           <v-btn
             icon
-            @click="addModFsDialog=false"
+            @click="closeAddModFsDialog"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
         <v-card-text>
-          <v-row>
-            <v-col cols="12">
-              <v-text-field
-                v-model="fsForm.fSaying"
-                label="명언"
-                outlined
-                clearable
-                required
-                hide-details
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                v-model="fsForm.author"
-                label="저자"
-                outlined
-                clearable
-                required
-                hide-details
-              ></v-text-field>
-            </v-col>
-          </v-row>
+          <v-form
+            ref="form"
+            lazy-validation
+          >
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="fsForm.fSaying"
+                  label="명언"
+                  :rules="rules"
+                  outlined
+                  clearable
+                  required
+                  hide-details="auto"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="fsForm.author"
+                  label="저자"
+                  :rules="rules"
+                  outlined
+                  clearable
+                  required
+                  hide-details="auto"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
         </v-card-text>
       </v-card>
     </v-dialog>
-    <!-- 명언 목록 dialog -->
+    <!-- 명언 목록 dialog (로그인 사용자만 보임) -->
     <v-dialog
       v-model="fsListDialog"
       z-index="100"
-      max-width="70%"
+      max-width="75%"
     >
       <v-card>
         <v-card-title>
           명언 목록
           <v-spacer/>
           <v-btn
+            v-if="fsList.length < 101"
+            class="mr-2"
+            icon
+            color="green lighten-1"
+            title="추가하기"
+            @click="openAddModFsDialog(-1)"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+          <v-btn
             class="mr-2"
             icon
             color="red lighten-1"
             title="모두 삭제하기"
-            @click="openAskAgain"
+            @click="openAskAgain(-1)"
           >
             <v-icon>mdi-collapse-all</v-icon>
           </v-btn>
           <v-btn
             icon
             title="창 닫기"
-            @click="fsListDialog=false"
+            @click="closeFsListDialog"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
         <v-divider class="mx-4"></v-divider>
-        <v-list-item
-          v-for="(fsOne, i) in fsList"
-          :key="i"
-          two-line
+        <template
+          v-for="(fsOne, i, j) in fsList"
         >
-          <v-list-item-content>
-            <v-list-item-text>
-              {{ fsOne.fSaying }}
-            </v-list-item-text>
-            <v-list-item-subtitle
-              class="mt-1"
-            >{{ fsOne.author }}</v-list-item-subtitle>
-          </v-list-item-content>
-          <v-card-actions>
-            <v-btn
-              icon
-              title="수정하기"
-              @click="openAddModFsDialog(i)"
-            >
-              <v-icon>mdi-pencil</v-icon>
-            </v-btn>
-            <v-btn
-              icon
-              title="삭제하기"
-              @click="deleteFs(i)"
-            >
-              <v-icon>mdi-trash-can</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-list-item>
+          <v-list-item
+            v-if="i > 0"
+            :key="i"
+            two-line
+          >
+            <v-list-item-content>
+              <v-list-item-content>
+                {{ fsOne.fSaying }}
+              </v-list-item-content>
+              <v-list-item-subtitle
+                class="mt-1"
+              >
+                {{ fsOne.author }}
+              </v-list-item-subtitle>
+            </v-list-item-content>
+            <v-card-actions>
+              <v-btn
+                icon
+                title="수정하기"
+                @click="openAddModFsDialog(i)"
+              >
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                title="삭제하기"
+                @click="openAskAgain(i)"
+              >
+                <v-icon>mdi-trash-can</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-list-item>
+          <v-list-item
+            v-else-if="fsList.length === 1"
+            :key="j"
+            two-line
+          >
+            <v-list-item-content>
+              <v-list-item-content>
+                {{ fsOne.fSaying }}
+              </v-list-item-content>
+              <v-list-item-subtitle
+                class="mt-1"
+              >
+                {{ fsOne.author }}
+              </v-list-item-subtitle>
+            </v-list-item-content>
+            <v-card-actions>
+              <!-- <v-btn
+                icon
+                title="수정하기"
+                @click="openAddModFsDialog(i)"
+              >
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                title="삭제하기"
+                @click="openAskAgain(i)"
+              >
+                <v-icon>mdi-trash-can</v-icon>
+              </v-btn> -->
+            </v-card-actions>
+          </v-list-item>
+        </template>
       </v-card>
     </v-dialog>
     <!-- 되묻기 dialog -->
@@ -175,16 +232,16 @@
       z-index="101"
       max-width="350px"
     >
-      <v-card height="150px">
+      <v-card height="155px">
         <v-card-title
-          class="text-subtitle-1"
+          class="text-h6"
         >
-          모두 삭제하기
+          명언 {{ delFsTitle }}
           <v-btn
             icon
             absolute
             right
-            @click="askAgain=false"
+            @click="closeAskAgain"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
@@ -193,7 +250,7 @@
           class="text-body-1"
 
         >
-          정말로 {{ }}하시겠습니까?
+          정말로 {{ delFsTitle }}하시겠습니까?
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -201,7 +258,7 @@
             text
             color="red lighten-1 accent-4"
             depressed
-            flat
+            @click="deleteFs"
           >
             Yes
           </v-btn>
@@ -209,7 +266,6 @@
             text
             color="grey lighten-1 accent-4"
             depressed
-            flat
             @click="askAgain=false"
           >
             No
@@ -226,82 +282,197 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
-      addModFsDialog: false,
-      fsListDialog: false,
-      askAgain: false,
-      selectedFsIndex: 0,
-      addModFsTitle: null,
-      fsListDB: null,
-      fsListDBIndex: null,
+      fsList: [{ // firebase 명언 리스트
+        author: '명언 없음',
+        fSaying: '명언을 입력해주세요.'
+      }],
+      fsList2: [], // 임시 명언 리스트
+      fsIndex: 0, // firebase 명언 랜덤 인덱스
       fsForm: {
         author: '',
         fSaying: ''
-      }
+      },
+      fsListDialog: false, // 명언 목록 dialog 여닫기
+      addModFsDialog: false, // 명언 추가 & 수정 dialog 여닫기
+      askAgain: false, // 명언 삭제시 되묻기 dialog 여닫기
+      addModFsTitle: null, // 명언 추가 & 수정 dialog의 title
+      delFsTitle: null, // 명언 추가 & 수정 dialog의 title
+      selectedFsIndex: 0, // 선택된 명언의 인덱스
+      fsNullMemory: true,
+      rules: [
+        value => !!value || '최소 1자이상 입력하여야 합니다!'
+      ]
     }
   },
   created () {
-    this.subscribe()
+
+  },
+  beforeUpdate () {
+    this.subscribeInit()
   },
   methods: {
     ...mapMutations([
       'addFamousSaying',
       'deleteFamousSaying'
     ]),
-    subscribe () {
-      if (this.login !== null) {
+    async subscribeInit () {
+      if (this.login !== null) { // 로그인 되었을 경우 사용자의 firebase DB에 명언이 없다면 넣어주기
         const onValue = this.$firebaseDB.onValue
         const ref = this.$firebaseDB.ref
         const db = this.$firebaseDB.getDatabase()
         const userId = this.login.uid
-        console.log('userId: ' + userId)
-        onValue(ref(db, 'server/users/' + userId + '/fs/'), (snapshot) => {
-          this.fsListDB = snapshot.val()
-          this.fsListDBIndex = Math.floor(Math.random() * (Object.keys(this.fsListDB).length))
-          console.log(this.fsListDB)
-          console.log(this.fsListDB.length)
-          console.log(this.fsListDBIndex)
+        onValue(ref(db, 'server/users/' + userId), (snapshot) => {
+          if (snapshot.val() === null) {
+            this.$firebaseDB.set(ref(db, 'server/users/' + userId), {
+              fs: this.fsLocalList
+            })
+          } else {
+            if (snapshot.val().fs.length !== 1) { // 명언이 1개라도 남아있을 경우
+              this.fsList = snapshot.val().fs
+              this.fsIndex = Math.floor(Math.random() * (Object.keys(this.fsList).length - 1)) + 1
+            } else { // 명언이 모두 삭제되었을 경우
+              this.fsList = [
+                {
+                  author: '명언 없음',
+                  fSaying: '명언을 입력해주세요.'
+                }
+              ]
+              this.fsIndex = 0
+            }
+          }
         })
       }
     },
     async openAddModFsDialog (index) { // 명언 추가 & 수정 dialog 열기
       this.selectedFsIndex = index // 클릭한 명언에 대한 index 기억하기
+      console.log(index)
       if (index < 0) { // 새로 작성시 비워두기
         this.fsForm.fSaying = ''
         this.fsForm.author = ''
         this.addModFsTitle = '명언 추가'
-      } else {
-        this.fsForm.fSaying = this.fsList[index].fSaying // 현재 명언 가져오기
-        this.fsForm.author = this.fsList[index].author // 현재 저자 가져오기
-        this.addModFsTitle = '명언 수정'
+      } else { // if : 비었을 경우
+        if (index === 0 && this.fsList[index].fSaying === '명언을 입력해주세요.' && this.fsList[index].author === '명언 없음') {
+          console.log('here1')
+          this.fsForm.fSaying = ''
+          this.fsForm.author = ''
+          this.addModFsTitle = '명언 추가'
+        } else {
+          console.log('here2')
+          this.fsForm.fSaying = this.fsList[index].fSaying // 현재 명언 가져오기
+          this.fsForm.author = this.fsList[index].author // 현재 저자 가져오기
+          this.addModFsTitle = '명언 수정'
+        }
       }
       this.addModFsDialog = true
     },
-    async saveFs () { // DB에 명언 추가 & 수정하기
-      const index = this.selectedFsIndex
-      if (index < 0) {
-        this.addFamousSaying(this.fsForm) // 새로 작성한 명언 추가
-      } else {
-        this.fsList[index].fSaying = this.fsForm.fSaying // 현재 명언 덮어쓰기
-        this.fsList[index].author = this.fsForm.author // 현재 저자 덮어쓰기
-      }
+    async closeAddModFsDialog () { // 명언 리스트 dialog 닫기 이벤트
+      this.selectedFsIndex = 0 // 창 닫을 때 인덱스 초기화
       this.addModFsDialog = false
     },
-    openAskAgain () {
+    async openFsListDialog () { // 명언 리스트 dialog 닫기 이벤트
+      this.fsListDialog = true
+    },
+    async closeFsListDialog () { // 명언 리스트 dialog 닫기 이벤트
+      this.selectedFsIndex = 0 // 창 닫을 때 인덱스 초기화
+      this.fsListDialog = false
+    },
+    async openAskAgain (index) { // 삭제 되묻기 dialog 열기 이벤트
+      this.selectedFsIndex = index // 삭제할 명언 인덱스 저장
+      if (this.selectedFsIndex < 0) {
+        this.delFsTitle = '모두 삭제'
+      } else {
+        this.delFsTitle = '삭제'
+      }
       this.askAgain = true
     },
-    async deleteFs (index) {
-      this.deleteFamousSaying(index)
+    async closeAskAgain () { // 삭제 되묻기 dialog 닫기 이벤트
+      this.selectedFsIndex = 0 // 창 닫을 때 인덱스 초기화
+      this.askAgain = false
     },
-    async deleteAllFs (index) {
-      this.deleteFamousSaying(index)
+    async saveFs () { // DB에 명언 추가 & 수정하기
+      if (this.fsForm.fSaying === '' && this.fsForm.author === '') {
+        alert('명언 혹은 저자에 최소 1자이상 입력하여야 합니다!')
+      } else {
+        const index = this.selectedFsIndex
+        if (index <= 0) { // 새로 작성한 명언 추가
+          this.fsList.push(this.fsForm)
+        // } else if (index === 0) { // index가 0일 경우
+        //   this.fsList[1].fSaying = this.fsForm.fSaying
+        //   this.fsList[1].author = this.fsForm.author
+        } else { // index가 0보다 클 때
+          this.fsList[index].fSaying = this.fsForm.fSaying // 현재 명언 덮어쓰기
+          this.fsList[index].author = this.fsForm.author // 현재 저자 덮어쓰기
+        }
+      }
+      this.saveFsList()
+    },
+    async saveFsList () { // 기존 명언 덮어쓰기
+      try {
+        const ref = this.$firebaseDB.ref
+        const db = this.$firebaseDB.getDatabase()
+        const userId = this.login.uid
+        await this.$firebaseDB.set(ref(db, 'server/users/' + userId), {
+          fs: this.fsList
+        })
+      } finally {
+        this.addModFsDialog = false
+      }
+    },
+    async deleteFs () { // 명언 삭제 이벤트
+      try {
+        // const onValue = this.$firebaseDB.onValue
+        const remove = this.$firebaseDB.remove
+        const ref = this.$firebaseDB.ref
+        const db = this.$firebaseDB.getDatabase()
+        const userId = this.login.uid
+        console.log('del i : ' + this.selectedFsIndex)
+        if (this.selectedFsIndex < 0) { // 모두 삭제
+          remove(ref(db, 'server/users/' + userId + '/fs/')) // 모두 삭제
+          await this.$firebaseDB.set(ref(db, 'server/users/' + userId), { // 기본 세팅
+            fs: [
+              {
+                author: '명언 없음',
+                fSaying: '명언을 입력해주세요.'
+              }
+            ]
+          })
+        } else { // 하나만 삭제
+          // await remove(ref(db, 'server/users/' + userId + '/fs/' + this.selectedFsIndex))
+          delete this.fsList[this.selectedFsIndex]
+          console.log('del : ' + this.fsList.length)
+          for (let i = 0; i < this.fsList.length; i++) { // 명언 인덱스 재배열
+            if (i !== this.selectedFsIndex) {
+              this.fsList2.push(this.fsList[i])
+              console.log('for : ' + this.fsList2)
+            }
+          }
+          this.fsList = this.fsList2
+          this.fsList2 = [] // 임시 명언 리스트 비우기
+          console.log('semi : ' + this.fsList2.length)
+          await this.$firebaseDB.set(ref(db, 'server/users/' + userId), {
+            fs: this.fsList
+          })
+        }
+      } finally {
+        this.askAgain = false
+      }
     }
   },
   computed: {
     ...mapState({
-      fsList: state => state.local.data.fs,
+      fsLocalList: state => state.local.data.fs,
       login: state => state.fireUser
     }),
-    ...mapGetters(['fsIndex'])
+    ...mapGetters(['fsIndexRand'])
+  },
+  watch: {
+    addModFsDialog (visible) { // 명언 추가 & 수정 form reset
+      if (visible) {
+        this.$nextTick(() => {
+          this.$refs.form.resetValidation()
+        })
+      }
+    }
   }
 }
 </script>

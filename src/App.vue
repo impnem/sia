@@ -94,7 +94,6 @@ export default {
   watch: { // 현재 페이지를 감지하여 타이틀 변경
     $route (to, from) {
       this.changeTitle(to.path)
-      console.log(to.path)
     }
   }
 }

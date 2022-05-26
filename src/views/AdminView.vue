@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-btn @click="save"><v-icon>mdi-pencil</v-icon>현재 server db 올리기</v-btn>
+    <v-btn @click="checkfs"><v-icon>mdi-pencil</v-icon>현재 fs db 보기</v-btn>
     <v-btn @click="checkLogin"><v-icon>mdi-pencil</v-icon>현재 login 정보 보기</v-btn>
     <v-btn @click="check"><v-icon>mdi-pencil</v-icon>사용자 첫 명언넣기</v-btn>
   </div>
@@ -23,6 +24,15 @@ export default {
       } finally { // catch 삭제함
         this.dialog = false
       }
+    },
+    async checkfs () {
+      const onValue = this.$firebaseDB.onValue
+      const ref = this.$firebaseDB.ref
+      const db = this.$firebaseDB.getDatabase()
+      const userId = this.login.uid
+      onValue(ref(db, 'server/users/' + userId + '/fs'), (snapshot) => {
+        console.log(snapshot.val())
+      })
     },
     async checkLogin () {
       console.log(this.login)

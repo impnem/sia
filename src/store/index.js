@@ -14,6 +14,9 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       data: {
         fs: [
           {
+            author: '명언 없음', fSaying: '명언을 입력해주세요.'
+          },
+          {
             author: '생텍쥐페리', fSaying: '사람은 오로지 가슴으로만 올바로 볼 수 있다. 본질적인 것은 눈에 보이지 않는다.'
           },
           {
@@ -203,8 +206,8 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
 
       return dateString
     },
-    fsIndex: (state, payload) => { // 명언 인덱스 랜덤으로 가져오기
-      const fsIndex = Math.floor(Math.random() * (Object.keys(state.local.data.fs).length))
+    fsIndexRand: (state, payload) => { // 명언 인덱스 랜덤으로 가져오기 // 0 제외
+      const fsIndex = Math.floor(Math.random() * (Object.keys(state.local.data.fs).length - 1)) + 1
       return fsIndex
     },
     dsDate: state => { // 날짜에 해당하는 dsmmss 가져오기

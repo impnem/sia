@@ -68,6 +68,7 @@ export default {
       setTimeout(function () { // 0.5초 딜레이
         fbAuth.signOut(fbAuth.getAuth())
       }, 500)
+      this.setFireUser(null) // 사용자 정보 초기화
     }
   },
   computed: {
