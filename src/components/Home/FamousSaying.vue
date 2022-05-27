@@ -4,7 +4,19 @@
     align-content="center"
     justify="center"
   >
-    <v-col cols="12">
+    <v-progress-circular
+      v-if="loading"
+      :size="50"
+      id="loading"
+      color="amber"
+      indeterminate
+    >
+    </v-progress-circular>
+    <v-col
+      id="memo"
+      class="d-none"
+      cols="12"
+    >
       <v-card
         class="mx-auto d-flex flex-column justify-center"
         height="350"
@@ -299,13 +311,14 @@ export default {
       delFsTitle: null, // 명언 추가 & 수정 dialog의 title
       selectedFsIndex: 0, // 선택된 명언의 인덱스
       fsNullMemory: true,
+      loading: true, // 로딩
       rules: [
         value => !!value || '최소 1자이상 입력하여야 합니다!'
       ]
     }
   },
-  created () {
-
+  mounted () {
+    this.memoDisplay()
   },
   beforeUpdate () {
     this.subscribeInit()
@@ -315,6 +328,14 @@ export default {
       'addFamousSaying',
       'deleteFamousSaying'
     ]),
+    async memoDisplay () { // 메모 보이기 & 로딩 딜레이
+      const memo = document.getElementById('memo')
+      if (memo.classList[0] === 'd-none') {
+        setTimeout(function () { // 1.5초 딜레이
+          memo.classList.remove('d-none')
+        }, 1500)
+      }
+    },
     async subscribeInit () {
       if (this.login !== null) { // 로그인 되었을 경우 사용자의 firebase DB에 명언이 없다면 넣어주기
         const onValue = this.$firebaseDB.onValue
@@ -482,4 +503,10 @@ export default {
   /* .v-card {
     overflow-y: hidden !important;
   } */
+
+  /* loading 위치 고정 */
+  #loading {
+    position: absolute !important;
+    bottom: 50% !important;
+  }
 </style>

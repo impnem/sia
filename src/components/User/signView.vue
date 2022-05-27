@@ -4,7 +4,7 @@
       <v-avatar
         size="32"
       >
-        <v-progress-circular v-if="loading" indeterminate></v-progress-circular>
+        <v-progress-circular v-if="loading" color="red" indeterminate></v-progress-circular>
         <v-icon v-else-if="login === null" center>mdi-account</v-icon>
         <v-img v-else :src="login.photoURL"></v-img>
       </v-avatar>
