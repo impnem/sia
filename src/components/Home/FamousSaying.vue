@@ -333,7 +333,7 @@ export default {
       if (memo.classList[0] === 'd-none') {
         setTimeout(function () { // 1.5초 딜레이
           memo.classList.remove('d-none')
-        }, 1500)
+        }, 1800)
       }
     },
     async subscribeInit () {
