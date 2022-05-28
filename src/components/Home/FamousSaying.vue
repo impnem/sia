@@ -23,6 +23,7 @@
         max-width="350"
         color="memo"
       >
+        <!-- 로그인 되었을 경우 명언 메모 -->
         <v-card-text
           v-if="login !== null"
           class="my-4 text-center text-h6 font-weight-bold custom--text"
@@ -34,6 +35,7 @@
             - {{ fsList[fsIndex].author }} -
           </div>
         </v-card-text>
+        <!-- 로그인 안되었을 경우 명언 메모 -->
         <v-card-text
           v-else
           class="my-4 text-center text-h6 font-weight-bold custom--text"
@@ -319,9 +321,10 @@ export default {
   },
   mounted () {
     this.memoDisplay()
+    this.subscribeInit()
   },
   beforeUpdate () {
-    this.subscribeInit()
+    // this.subscribeInit()
   },
   methods: {
     ...mapMutations([
@@ -460,16 +463,13 @@ export default {
         } else { // 하나만 삭제
           // await remove(ref(db, 'server/users/' + userId + '/fs/' + this.selectedFsIndex))
           delete this.fsList[this.selectedFsIndex]
-          console.log('del : ' + this.fsList.length)
           for (let i = 0; i < this.fsList.length; i++) { // 명언 인덱스 재배열
             if (i !== this.selectedFsIndex) {
               this.fsList2.push(this.fsList[i])
-              console.log('for : ' + this.fsList2)
             }
           }
           this.fsList = this.fsList2
           this.fsList2 = [] // 임시 명언 리스트 비우기
-          console.log('semi : ' + this.fsList2.length)
           await this.$firebaseDB.set(ref(db, 'server/users/' + userId), {
             fs: this.fsList
           })
@@ -494,6 +494,13 @@ export default {
         })
       }
     }
+    // $route (to) { // 화면 라우팅 될 때 명언 목록 다시 불러오기
+    //   console.log(to)
+    //   if (to.path === '/') {
+    //     console.log('here')
+    //     this.subscribeInit()
+    //   }
+    // }
   }
 }
 </script>

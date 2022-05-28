@@ -30,9 +30,7 @@
         md="auto"
         lg="auto"
       >
-        <v-card
-          class=""
-        >
+        <v-card>
           <v-img
             width="130px"
             height="130px"
