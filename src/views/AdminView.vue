@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-btn @click="save"><v-icon>mdi-pencil</v-icon>현재 server db 올리기</v-btn>
+    <!-- <v-btn @click="save"><v-icon>mdi-pencil</v-icon>현재 server db 올리기</v-btn>
     <v-btn @click="checkfs"><v-icon>mdi-pencil</v-icon>현재 fs db 보기</v-btn>
     <v-btn @click="checkLogin"><v-icon>mdi-pencil</v-icon>현재 login 정보 보기</v-btn>
-    <v-btn @click="check"><v-icon>mdi-pencil</v-icon>사용자 첫 명언넣기</v-btn>
+    <v-btn @click="check"><v-icon>mdi-pencil</v-icon>사용자 첫 명언넣기</v-btn> -->
   </div>
 </template>
 

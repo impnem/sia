@@ -1,13 +1,13 @@
 <template>
-  <profile-contents/>
+  <profile-main/>
 </template>
 
 <script>
-import ProfileContents from '@/components/About/ProfileContents.vue'
+import ProfileMain from '@/components/About/ProfileMain.vue'
 
 export default {
   components: {
-    ProfileContents
+    ProfileMain
   }
 }
 </script>
