@@ -42,7 +42,7 @@ export default new Vuetify({
   theme: {
     themes: {
       light: {
-        primary: '#ff79c6',
+        primary: '#343746',
         secondary: '#ffffff',
         thirdly: '#f2f4f7',
         fourthly: '#eaedf1',
@@ -52,7 +52,7 @@ export default new Vuetify({
         background: '#7c7c7c'
       },
       dark: {
-        primary: '#ff79c6',
+        primary: '#ffffff',
         secondary: '#343746',
         thirdly: '#282a36',
         fourthly: '#21222c',

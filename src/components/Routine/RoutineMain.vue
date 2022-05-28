@@ -38,6 +38,8 @@
             class="px-0 py-0 mx-0 my-0"
             border="left"
             colored-border
+            shaped
+            dense
             :color="`${ content.colorTag }`"
           >
             <v-card-text
