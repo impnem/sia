@@ -48,7 +48,8 @@ export default new Vuetify({
         fourthly: '#eaedf1',
         icon: '#343746',
         custom: '#21222c',
-        memo: '#e6b905'
+        memo: '#e6b905',
+        background: '#7c7c7c'
       },
       dark: {
         primary: '#ff79c6',
@@ -57,7 +58,8 @@ export default new Vuetify({
         fourthly: '#21222c',
         icon: '#ffffff',
         custom: '#21222c',
-        memo: '#e6b905'
+        memo: '#e6b905',
+        background: '#7c7c7c'
       }
     }
   }

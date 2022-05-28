@@ -100,8 +100,12 @@ export default {
 </script>
 
 <style>
-  /* 스크롤바 숨기기 */
+  /* scrollbar 숨기기 */
   html {
     overflow-y: hidden !important;
+  }
+  /* header 그림자 제거 */
+  header {
+    box-shadow: none !important;
   }
 </style>

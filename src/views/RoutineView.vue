@@ -1,12 +1,14 @@
 <template>
-  <div>
-    routine 페이지 입니다.
-  </div>
+  <routine-main></routine-main>
 </template>
 
 <script>
-export default {
+import RoutineMain from '@/components/Routine/RoutineMain.vue'
 
+export default {
+  components: {
+    RoutineMain
+  }
 }
 </script>
 

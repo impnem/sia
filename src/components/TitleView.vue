@@ -1,7 +1,12 @@
 <template>
-  <v-toolbar-title>
-    {{ title }}
-  </v-toolbar-title>
+  <v-toolbar
+    color="fourthly"
+    flat
+  >
+    <v-toolbar-title>
+      {{ title }}
+    </v-toolbar-title>
+  </v-toolbar>
 </template>
 
 <script>
