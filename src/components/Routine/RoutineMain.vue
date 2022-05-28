@@ -41,6 +41,7 @@
               v-model="content.check"
               class="my-0 py-0"
               :label="`${ content.title }`"
+              text-color="primary"
               hide-details
             >
             </v-checkbox>
@@ -48,6 +49,15 @@
         </v-card>
       </v-tab-item>
     </v-tabs-items>
+    <v-btn
+      class="mb-10"
+      absolute
+      bottom
+      right
+      fab
+    >
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
   </v-card>
 </template>
 
