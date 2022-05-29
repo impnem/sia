@@ -1,12 +1,14 @@
 <template>
-  <div>
-    book 페이지 입니다.
-  </div>
+  <book-main></book-main>
 </template>
 
 <script>
-export default {
+import BookMain from '@/components/Book/BookMain.vue'
 
+export default {
+  components: {
+    BookMain
+  }
 }
 </script>
 

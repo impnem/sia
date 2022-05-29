@@ -18,13 +18,14 @@
       v-model="drawer"
       width="350"
       color="thirdly"
+      max-height="100%"
     >
       <site-menu></site-menu>
     </v-navigation-drawer>
     <v-main>
       <router-view/>
+      <site-footer></site-footer>
     </v-main>
-    <site-footer></site-footer>
   </v-app>
 </template>
 
@@ -112,5 +113,17 @@ export default {
   /* header 그림자 제거 */
   header {
     box-shadow: none !important;
+  }
+  /* footer부분까지 꽉 차도록 */
+  main {
+    padding-bottom: 0 !important;
+  }
+  /* footer부분까지 꽉 차도록 */
+  nav {
+    max-height: 100% !important;
+  }
+  /* footer 부분이 라우터 부분을 가리지 않도록 */
+  .v-main__wrap {
+    padding-bottom: 56px !important;
   }
 </style>
