@@ -52,7 +52,7 @@ export default new Vuetify({
         background: '#7c7c7c'
       },
       dark: {
-        primary: '#ffffff',
+        primary: '#eaedf1',
         secondary: '#343746',
         thirdly: '#282a36',
         fourthly: '#21222c',

@@ -100,9 +100,14 @@ export default {
 </script>
 
 <style>
-  /* scrollbar 숨기기 */
+  /* scrollbar 동작은 하면서 숨기기 */
   html {
-    overflow-y: hidden !important;
+    /* overflow-y: hidden !important; */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
   }
   /* header 그림자 제거 */
   header {
