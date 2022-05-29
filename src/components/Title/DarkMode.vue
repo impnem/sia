@@ -7,7 +7,7 @@
       large
       @click="changeTheme(color)"
     >
-      <v-icon>{{ color == 'light' ? icon.light : icon.dark }}</v-icon>
+      <v-icon>{{ color == 'light' ? icon.dark : icon.light}}</v-icon>
     </v-btn>
   </div>
 </template>
