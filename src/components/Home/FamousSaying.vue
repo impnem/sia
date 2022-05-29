@@ -56,21 +56,27 @@
       <!-- 명언 100개일때 추가버튼 안보이게 -->
       <v-btn
         v-if="fsList.length < 101"
-        class="mb-11 mr-16"
+        class="mb-13 mr-15"
         absolute
         bottom
         right
-        fab
+        icon
+        x-large
+        outlined
+        color="icon"
         @click="openAddModFsDialog(-1)"
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
       <v-btn
-        class="mb-11 mr-n1"
+        class="mb-13 mr-n1"
         absolute
         bottom
         right
-        fab
+        icon
+        x-large
+        outlined
+        color="icon"
         @click="openFsListDialog"
       >
         <v-icon>mdi-format-list-bulleted-square</v-icon>
