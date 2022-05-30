@@ -37,24 +37,60 @@
               width="500"
             >
               <v-card>
-                <v-card-title class="text-h6 deep-purple">
-                  이벤트 제목
+                <v-card-title>
+                  <span class="text-h5">이벤트 내용 수정</span>
                 </v-card-title>
-
-                <v-card-text class="mt-6">
-                  이벤트 내용 부분입니다.
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <v-col
+                        cols="12"
+                        md="6"
+                      >
+                        <v-text-field
+                          label="몸무게(kg)"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        md="6"
+                      >
+                        <v-text-field
+                          label="운동 시작시간"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col
+                        cols="12"
+                      >
+                        <v-card-title>운동 목록</v-card-title>
+                        <v-btn
+                          width="100%"
+                          height="50px"
+                          color="grey darken-1"
+                        >
+                          <v-icon>mdi-plus</v-icon>
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-card-text>
-
-                <v-divider></v-divider>
-
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn
-                    color="primary"
+                    color="blue darken-1"
                     text
                     @click="closeWorkoutDialog"
                   >
-                    OK
+                    Close
+                  </v-btn>
+                  <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="closeWorkoutDialog"
+                  >
+                    Save
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -83,7 +119,7 @@
               class="mx-3 my-3 pb-4"
               :color="g.color"
             >
-              <v-card-title class="text-body-1">{{ g.title }}</v-card-title>
+              <v-card-title class="text-body-1 font-weight-bold">{{ g.title }}</v-card-title>
               <v-sheet
                 class="mx-auto"
                 :color="g.color"
