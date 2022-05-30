@@ -1,50 +1,50 @@
 <template>
   <div>
     <v-row>
-    <v-col>
-      <v-sheet :height="height">
-        <v-calendar
-          ref="calendar"
-          :now="today"
-          :value="today"
-          :events="events"
-          event-color="memo"
-          event-text-color="custom"
-          color="memo"
-          type="week"
-          @click:event="openPolarisDialog"
-        ></v-calendar>
-        <!-- 이벤트 확인 dialog -->
-        <v-dialog
-          v-model="polarisDialog"
-          width="500"
-        >
-          <v-card>
-            <v-card-title class="text-h6 memo">
-              이벤트 제목
-            </v-card-title>
+      <v-col>
+        <v-sheet :height="height">
+          <v-calendar
+            ref="calendar"
+            :now="today"
+            :value="today"
+            :events="events"
+            event-color="memo"
+            event-text-color="custom"
+            color="memo"
+            type="week"
+            @click:event="openPolarisDialog"
+          ></v-calendar>
+          <!-- 이벤트 확인 dialog -->
+          <v-dialog
+            v-model="polarisDialog"
+            width="500"
+          >
+            <v-card>
+              <v-card-title class="text-h6 memo">
+                이벤트 제목
+              </v-card-title>
 
-            <v-card-text class="mt-6">
-              이벤트 내용 부분입니다.
-            </v-card-text>
+              <v-card-text class="mt-6">
+                이벤트 내용 부분입니다.
+              </v-card-text>
 
-            <v-divider></v-divider>
+              <v-divider></v-divider>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                color="primary"
-                text
-                @click="closePolarisDialog"
-              >
-                OK
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-sheet>
-    </v-col>
-  </v-row>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="primary"
+                  text
+                  @click="closePolarisDialog"
+                >
+                  OK
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-sheet>
+      </v-col>
+    </v-row>
     <v-btn
       class="mr-2 mb-12"
       fixed
