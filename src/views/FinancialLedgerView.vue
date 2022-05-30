@@ -1,12 +1,14 @@
 <template>
-  <div>
-    Financial 페이지 입니다.
-  </div>
+  <financial-ledger-main></financial-ledger-main>
 </template>
 
 <script>
-export default {
+import FinancialLedgerMain from '@/components/FinancialLedger/FinancialLedgerMain.vue'
 
+export default {
+  components: {
+    FinancialLedgerMain
+  }
 }
 </script>
 

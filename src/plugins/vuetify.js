@@ -49,6 +49,7 @@ export default new Vuetify({
         icon: '#343746',
         custom: '#21222c',
         memo: '#e6b905',
+        list: '#dfdfdf',
         background: '#7c7c7c'
       },
       dark: {
@@ -59,6 +60,7 @@ export default new Vuetify({
         icon: '#ffffff',
         custom: '#21222c',
         memo: '#e6b905',
+        list: '#343434',
         background: '#7c7c7c'
       }
     }
