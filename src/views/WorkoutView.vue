@@ -1,12 +1,14 @@
 <template>
-  <div>
-    workout 페이지 입니다.
-  </div>
+  <workout-main></workout-main>
 </template>
 
 <script>
-export default {
+import WorkoutMain from '@/components/Workout/WorkoutMain.vue'
 
+export default {
+  components: {
+    WorkoutMain
+  }
 }
 </script>
 
