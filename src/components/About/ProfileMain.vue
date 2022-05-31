@@ -12,7 +12,19 @@
           <v-card-title>Introduce</v-card-title>
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
-            자기계발을 하나의 앱에서 관리할 수 있으면 좋겠다고 생각하여 만들게 되었다.
+            자기계발 앱들을 하나의 앱에서 관리할 수 있으면 좋겠다고 생각하여 만들게 되었다.
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col
+        cols="12"
+      >
+        <v-card>
+          <v-card-title>Period of Development</v-card-title>
+          <v-divider class="mx-4"></v-divider>
+          <v-card-text>
+            2022-05-16 ~ <br/>
+            지속적으로 업데이트 중!
           </v-card-text>
         </v-card>
       </v-col>
@@ -21,29 +33,35 @@
       >
         <v-card>
           <v-card-title>Tech Stacks</v-card-title>
-        </v-card>
-      </v-col>
-      <v-col
-        v-for="i in img"
-        :key="i"
-        sm="auto"
-        md="auto"
-        lg="auto"
-      >
-        <v-card>
-          <v-img
-            width="130px"
-            height="130px"
-            class="mx-auto align-center"
-            :src="i.src"
-          >
-            <v-card-title
-              class="text-button justify-center"
-              :style="color == 'light' ? skillText.light : skillText.dark"
+          <v-divider class="mx-4 mb-4"></v-divider>
+          <v-row>
+            <v-col
+              v-for="i in img"
+              :key="i"
+              sm="auto"
+              md="auto"
+              lg="auto"
             >
-              {{ i.title }}
-            </v-card-title>
-          </v-img>
+              <v-card
+                class="mx-1"
+                color="techStacks"
+              >
+                <v-img
+                  width="130px"
+                  height="130px"
+                  class="mx-auto align-center"
+                  :src="i.src"
+                >
+                  <v-card-title
+                    class="text-button justify-center"
+                    :style="color == 'light' ? skillText.light : skillText.dark"
+                  >
+                    {{ i.title }}
+                  </v-card-title>
+                </v-img>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
       <v-col

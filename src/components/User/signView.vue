@@ -62,13 +62,20 @@ export default {
       } finally {
         this.loading = false
       }
+      setTimeout(function () { // 0.5초 딜레이
+        window.location.reload()
+      }, 500)
     },
     signOut () { // 로그아웃
       const fbAuth = this.$firebaseAuth
-      setTimeout(function () { // 0.5초 딜레이
+      try {
         fbAuth.signOut(fbAuth.getAuth())
+      } finally {
+        this.setFireUser(null) // 사용자 정보 초기화
+      }
+      setTimeout(function () { // 0.5초 딜레이
+        window.location.reload()
       }, 500)
-      this.setFireUser(null) // 사용자 정보 초기화
     }
   },
   computed: {

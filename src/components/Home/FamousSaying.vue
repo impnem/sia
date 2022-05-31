@@ -330,7 +330,7 @@ export default {
     this.subscribeInit()
   },
   beforeUpdate () {
-    // this.subscribeInit()
+    this.updateFs()
   },
   methods: {
     ...mapMutations([
@@ -357,37 +357,44 @@ export default {
               fs: this.fsLocalList
             })
           } else {
-            if (snapshot.val().fs.length !== 1) { // 명언이 1개라도 남아있을 경우
-              this.fsList = snapshot.val().fs
-              this.fsIndex = Math.floor(Math.random() * (Object.keys(this.fsList).length - 1)) + 1
-            } else { // 명언이 모두 삭제되었을 경우
-              this.fsList = [
-                {
-                  author: '명언 없음',
-                  fSaying: '명언을 입력해주세요.'
-                }
-              ]
-              this.fsIndex = 0
-            }
+            this.updateFs()
           }
         })
       }
     },
+    async updateFs () {
+      const onValue = this.$firebaseDB.onValue
+      const ref = this.$firebaseDB.ref
+      const db = this.$firebaseDB.getDatabase()
+      const userId = this.login.uid
+      onValue(ref(db, 'server/users/' + userId), (snapshot) => {
+        if (snapshot.val().fs.length > 1) { // 명언이 1개라도 남아있을 경우
+          console.log('leng' + snapshot.val().fs.length)
+          this.fsList = snapshot.val().fs
+          this.fsIndex = Math.floor(Math.random() * (Object.keys(this.fsList).length - 1)) + 1
+        } else { // 명언이 모두 삭제되었을 경우
+          this.fsList = [
+            {
+              author: '명언 없음',
+              fSaying: '명언을 입력해주세요.'
+            }
+          ]
+          this.fsIndex = 0
+        }
+      })
+    },
     async openAddModFsDialog (index) { // 명언 추가 & 수정 dialog 열기
       this.selectedFsIndex = index // 클릭한 명언에 대한 index 기억하기
-      console.log(index)
       if (index < 0) { // 새로 작성시 비워두기
         this.fsForm.fSaying = ''
         this.fsForm.author = ''
         this.addModFsTitle = '명언 추가'
       } else { // if : 비었을 경우
         if (index === 0 && this.fsList[index].fSaying === '명언을 입력해주세요.' && this.fsList[index].author === '명언 없음') {
-          console.log('here1')
           this.fsForm.fSaying = ''
           this.fsForm.author = ''
           this.addModFsTitle = '명언 추가'
         } else {
-          console.log('here2')
           this.fsForm.fSaying = this.fsList[index].fSaying // 현재 명언 가져오기
           this.fsForm.author = this.fsList[index].author // 현재 저자 가져오기
           this.addModFsTitle = '명언 수정'
