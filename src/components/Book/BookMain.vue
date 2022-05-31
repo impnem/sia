@@ -74,6 +74,7 @@
                     x-large
                     outlined
                     class="mx-auto my-auto"
+                    color="icon"
                     @click="openBookDialog(-1)"
                   >
                     <v-icon>mdi-plus</v-icon>
@@ -266,7 +267,7 @@ export default {
       bookIndex: 0,
       items: [
         {
-          color: 'secondary',
+          color: 'fourthly',
           src: '',
           title: '',
           author: ''

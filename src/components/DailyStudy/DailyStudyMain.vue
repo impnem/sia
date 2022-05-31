@@ -21,17 +21,16 @@
       </v-col>
       <v-col cols="12" >
         <div>
-        <iframe
-          :width="iframeSize.width"
-          :height="iframeSize.height"
-          max-width="1185px"
-          :src="'https://www.youtube.com/embed/' + ds[dsDate].src"
-          :resize="handleResize()"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+          <iframe
+            :width="iframeSize.width"
+            :height="iframeSize.height"
+            max-width="1185px"
+            :src="ds[dsDate].src"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
       </v-col>
     </v-row>
@@ -51,6 +50,7 @@ export default {
     }
   },
   mounted () {
+    this.handleResize()
     window.addEventListener('resize', this.handleResize)
   },
   beforeDestroy () {

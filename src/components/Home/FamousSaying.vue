@@ -353,6 +353,7 @@ export default {
         const userId = this.login.uid
         onValue(ref(db, 'server/users/' + userId), (snapshot) => {
           if (snapshot.val() === null) {
+            console.log('create')
             this.$firebaseDB.set(ref(db, 'server/users/' + userId), {
               fs: this.fsLocalList
             })
@@ -363,25 +364,29 @@ export default {
       }
     },
     async updateFs () {
-      const onValue = this.$firebaseDB.onValue
-      const ref = this.$firebaseDB.ref
-      const db = this.$firebaseDB.getDatabase()
-      const userId = this.login.uid
-      onValue(ref(db, 'server/users/' + userId), (snapshot) => {
-        if (snapshot.val().fs.length > 1) { // 명언이 1개라도 남아있을 경우
-          console.log('leng' + snapshot.val().fs.length)
-          this.fsList = snapshot.val().fs
-          this.fsIndex = Math.floor(Math.random() * (Object.keys(this.fsList).length - 1)) + 1
-        } else { // 명언이 모두 삭제되었을 경우
-          this.fsList = [
-            {
-              author: '명언 없음',
-              fSaying: '명언을 입력해주세요.'
+      if (this.login !== null) {
+        const onValue = this.$firebaseDB.onValue
+        const ref = this.$firebaseDB.ref
+        const db = this.$firebaseDB.getDatabase()
+        const userId = this.login.uid
+        onValue(ref(db, 'server/users/' + userId), (snapshot) => {
+          if (snapshot.val().fs.length > 1) { // 명언이 1개라도 남아있을 경우
+            console.log('leng' + snapshot.val().fs.length)
+            this.fsList = snapshot.val().fs
+            if (this.fsIndex === 0) {
+              this.fsIndex = Math.floor(Math.random() * (Object.keys(this.fsList).length - 1)) + 1
             }
-          ]
-          this.fsIndex = 0
-        }
-      })
+          } else { // 명언이 모두 삭제되었을 경우
+            this.fsList = [
+              {
+                author: '명언 없음',
+                fSaying: '명언을 입력해주세요.'
+              }
+            ]
+            this.fsIndex = 0
+          }
+        })
+      }
     },
     async openAddModFsDialog (index) { // 명언 추가 & 수정 dialog 열기
       this.selectedFsIndex = index // 클릭한 명언에 대한 index 기억하기
@@ -458,13 +463,13 @@ export default {
     async deleteFs () { // 명언 삭제 이벤트
       try {
         // const onValue = this.$firebaseDB.onValue
-        const remove = this.$firebaseDB.remove
+        // const remove = this.$firebaseDB.remove
         const ref = this.$firebaseDB.ref
         const db = this.$firebaseDB.getDatabase()
         const userId = this.login.uid
         console.log('del i : ' + this.selectedFsIndex)
         if (this.selectedFsIndex < 0) { // 모두 삭제
-          remove(ref(db, 'server/users/' + userId + '/fs/')) // 모두 삭제
+          // remove(ref(db, 'server/users/' + userId + '/fs/')) // 모두 삭제
           await this.$firebaseDB.set(ref(db, 'server/users/' + userId), { // 기본 세팅
             fs: [
               {

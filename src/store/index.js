@@ -170,8 +170,8 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       data: {
         ds: {
           ds0516: {
-            subject: '습관을 바꾸고 싶다면 무조건 적어라',
-            src: 'TBexO_Dzm4o'
+            subject: '돈을 벌어본 사람만이 아는 1가지',
+            src: 'https://www.youtube.com/embed/F2j9WKwXoCE'
           },
           ds0517: {
             subject: '주가 폭락17',
