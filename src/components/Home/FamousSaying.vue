@@ -1,8 +1,9 @@
 <template>
   <v-row
-    class="fill-height"
+    class="fill-height mx-auto"
     align-content="center"
     justify="center"
+    width="100%"
   >
     <v-progress-circular
       v-if="loading"
@@ -371,7 +372,6 @@ export default {
         const userId = this.login.uid
         onValue(ref(db, 'server/users/' + userId), (snapshot) => {
           if (snapshot.val().fs.length > 1) { // 명언이 1개라도 남아있을 경우
-            console.log('leng' + snapshot.val().fs.length)
             this.fsList = snapshot.val().fs
             if (this.fsIndex === 0) {
               this.fsIndex = Math.floor(Math.random() * (Object.keys(this.fsList).length - 1)) + 1
@@ -467,7 +467,6 @@ export default {
         const ref = this.$firebaseDB.ref
         const db = this.$firebaseDB.getDatabase()
         const userId = this.login.uid
-        console.log('del i : ' + this.selectedFsIndex)
         if (this.selectedFsIndex < 0) { // 모두 삭제
           // remove(ref(db, 'server/users/' + userId + '/fs/')) // 모두 삭제
           await this.$firebaseDB.set(ref(db, 'server/users/' + userId), { // 기본 세팅

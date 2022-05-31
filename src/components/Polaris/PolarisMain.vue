@@ -1,8 +1,11 @@
 <template>
   <div>
-    <v-row>
-      <v-col>
-        <v-sheet :height="height">
+    <v-row width="100%" class="mx-auto">
+      <v-col class="px-0" >
+        <v-sheet
+        :height="height"
+        width="100%"
+        >
           <v-calendar
             ref="calendar"
             :now="today"
@@ -99,7 +102,10 @@ export default {
   },
   methods: {
     handlerResize () { // 화면 높이에 따른 테이블 높이 변화
-      this.height = window.outerHeight - 232
+      // this.height = window.outerHeight - 232
+      this.height = window.innerHeight - 112
+      console.log(this.height)
+      console.log('inner' + window.innerHeight)
     },
     openPolarisDialog () {
       this.polarisDialog = true

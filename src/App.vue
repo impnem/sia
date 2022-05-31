@@ -120,7 +120,7 @@ export default {
   }
   /* footer부분까지 꽉 차도록 */
   nav {
-    max-height: 100% !important;
+    max-height: 100vh !important;
   }
   /* footer 부분이 라우터 부분을 가리지 않도록 */
   .v-main__wrap {
