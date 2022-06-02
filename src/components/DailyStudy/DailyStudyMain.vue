@@ -17,7 +17,7 @@
         cols="12"
         class="text-body-1"
       >
-        {{ ds[dsDate].subject }}
+        {{ dsSubject }}
       </v-col>
       <v-col cols="12" >
         <div>
@@ -25,7 +25,7 @@
             :width="iframeSize.width"
             :height="iframeSize.height"
             max-width="1185px"
-            :src="ds[dsDate].src"
+            :src="`https://www.youtube.com/embed/` + dsSrc"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -43,6 +43,8 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      dsSubject: null,
+      dsSrc: null,
       iframeSize: {
         width: 0,
         height: 0
@@ -52,6 +54,7 @@ export default {
   mounted () {
     this.handleResize()
     window.addEventListener('resize', this.handleResize)
+    this.roadDs()
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.handleResize)
@@ -79,6 +82,23 @@ export default {
           height: 1161 * 0.5625
         }
       }
+    },
+    async roadDs () {
+      const onValue = this.$firebaseDB.onValue
+      const ref = this.$firebaseDB.ref
+      const db = this.$firebaseDB.getDatabase()
+      const dsDate = this.dsDate
+      console.log(this.dsDate)
+      onValue(ref(db, 'server/data/ds/' + dsDate), (snapshot) => {
+        console.log('ds : ' + snapshot.val())
+        if (snapshot.val() === null) { // 없는 경우
+          this.dsSubject = '등록된 내용이 없습니다.'
+          this.dsSrc = 'about:blank'
+        } else { // 있는 경우
+          this.dsSubject = snapshot.val().subject
+          this.dsSrc = snapshot.val().src
+        }
+      })
     }
   },
   computed: {

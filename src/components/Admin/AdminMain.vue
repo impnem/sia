@@ -1,10 +1,11 @@
 <template>
   <div>
-    <span>로그인 해야만 보이는 페이지 입니다.</span>
-    <!-- <v-btn @click="save"><v-icon>mdi-pencil</v-icon>현재 server db 올리기</v-btn>
-    <v-btn @click="checkfs"><v-icon>mdi-pencil</v-icon>현재 fs db 보기</v-btn>
-    <v-btn @click="checkLogin"><v-icon>mdi-pencil</v-icon>현재 login 정보 보기</v-btn>
-    <v-btn @click="check"><v-icon>mdi-pencil</v-icon>사용자 첫 명언넣기</v-btn> -->
+    <span>로그인 해야만 보이는 페이지 입니다.</span><br/>
+    <!-- <v-btn @click="save"><v-icon>mdi-pencil</v-icon>현재 server db 올리기</v-btn> -->
+    <!-- <v-btn @click="checkfs"><v-icon>mdi-pencil</v-icon>현재 fs db 보기</v-btn> -->
+    <!-- <v-btn @click="checkLogin"><v-icon>mdi-pencil</v-icon>현재 login 정보 보기</v-btn> -->
+    <!-- <v-btn @click="check"><v-icon>mdi-pencil</v-icon>사용자 첫 명언넣기</v-btn> -->
+    <!-- <v-btn @click="saveDs"><v-icon>mdi-pencil</v-icon>현재 등록된 하루공부 넣기</v-btn> -->
   </div>
 </template>
 
@@ -13,6 +14,11 @@
 import { mapState } from 'vuex'
 
 export default {
+  data () {
+    return {
+
+    }
+  },
   methods: {
     async save () {
       try {
@@ -37,6 +43,7 @@ export default {
     },
     async checkLogin () {
       console.log(this.login)
+      console.log(this.login.email)
     },
     check () {
       // 첫 로그인시 명언 저장하기
@@ -53,6 +60,13 @@ export default {
           }
         })
       }
+    },
+    async saveDs () {
+      const ref = this.$firebaseDB.ref
+      const db = this.$firebaseDB.getDatabase()
+      await this.$firebaseDB.set(ref(db, 'server/data/'), {
+        ds: this.server.data.ds
+      })
     }
   },
   computed: {

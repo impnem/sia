@@ -36,7 +36,7 @@
           <v-divider class="mx-4 mb-4"></v-divider>
           <v-row>
             <v-col
-              v-for="i in img"
+              v-for="(img, i) in imgs"
               :key="i"
               sm="auto"
               md="auto"
@@ -50,13 +50,13 @@
                   width="130px"
                   height="130px"
                   class="mx-auto align-center"
-                  :src="i.src"
+                  :src="img.src"
                 >
                   <v-card-title
                     class="text-button justify-center"
                     :style="color == 'light' ? skillText.light : skillText.dark"
                   >
-                    {{ i.title }}
+                    {{ img.title }}
                   </v-card-title>
                 </v-img>
               </v-card>
@@ -71,14 +71,14 @@
           <v-card-title>links</v-card-title>
           <v-divider class="mx-4"></v-divider>
           <v-btn
-            v-for="l in link"
+            v-for="(link, l) in links"
             :key="l"
-            :href="l.src"
+            :href="link.src"
             target="_blank"
             class="ml-4 my-4"
           >
-            <v-icon>{{ l.icon }}</v-icon>
-            {{ l.title }}
+            <v-icon>{{ link.icon }}</v-icon>
+            {{ link.title }}
           </v-btn>
         </v-card>
       </v-col>
@@ -96,7 +96,7 @@ export default {
         dark: 'text-shadow: rgb(0 0 0 / 100%) 1px 1px 1px',
         light: 'text-shadow: rgb(255 255 255 / 100%) 1px 1px 1px'
       },
-      img: [
+      imgs: [
         {
           title: 'HTML5',
           src: require('@/assets/About/html5.png')
@@ -126,7 +126,7 @@ export default {
           src: require('@/assets/About/firebase.png')
         }
       ],
-      link: [
+      links: [
         {
           icon: 'mdi-github',
           title: 'Github',

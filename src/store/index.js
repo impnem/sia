@@ -169,25 +169,25 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       },
       data: {
         ds: {
-          ds0516: {
-            subject: '돈을 벌어본 사람만이 아는 1가지',
-            src: 'https://www.youtube.com/embed/F2j9WKwXoCE'
+          ds0601: {
+            subject: '넘어질 것인가 넘어설 것인가',
+            src: '2lDUBRp4HKw'
           },
-          ds0517: {
-            subject: '주가 폭락17',
-            src: 'kwtU0TjhyoI'
+          ds0602: {
+            subject: '부정적 마인드에서 벗어나는 비결',
+            src: 'mZFLQcmw4GM'
           },
-          ds0518: {
-            subject: '주가 폭락18',
-            src: 'kwtU0TjhyoI'
+          ds0603: {
+            subject: '평생 가져야 할 단 하나의 습관',
+            src: 'Fvb35ynxfE8'
           },
-          ds0519: {
-            subject: '주가 폭락19',
-            src: 'kwtU0TjhyoI'
+          ds0604: {
+            subject: '인생을 바꾸는 인간관계를 만드는 3가지 방법',
+            src: 'yOR6OUUhUSg'
           },
-          ds0520: {
-            subject: '주가 폭락20',
-            src: 'kwtU0TjhyoI'
+          ds0605: {
+            subject: '진짜 실력을 갖춰라',
+            src: '3FMF31h-JDI'
           }
         }
       }
@@ -211,11 +211,11 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
       return fsIndex
     },
     dsDate: state => { // 날짜에 해당하는 dsmmss 가져오기
-      // const selectedDate = state.local.date
-      // const modifyDate = selectedDate.replaceAll('-', '').substr(4, 7)
-      // const dsmmdd = 'ds' + modifyDate
+      const selectedDate = state.local.date
+      const modifyDate = selectedDate.replaceAll('-', '').substr(4, 7)
+      const dsmmdd = 'ds' + modifyDate
       // 임시
-      const dsmmdd = 'ds0516'
+      // const dsmmdd = 'ds0516'
       return dsmmdd
     },
     menuCount: state => { // arrow function
