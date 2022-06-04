@@ -11,11 +11,12 @@
         cols="12"
         class="text-h5"
       >
-        오늘의 하루공부
+        오늘의 하루공부<br/>
+        <span class="text-caption grey--text">({{ date }})</span>
       </v-col>
       <v-col
         cols="12"
-        class="text-body-1"
+        class="text-subtitle-1"
       >
         {{ dsSubject }}
       </v-col>
@@ -54,6 +55,9 @@ export default {
   mounted () {
     this.handleResize()
     window.addEventListener('resize', this.handleResize)
+    this.roadDs()
+  },
+  beforeUpdate () {
     this.roadDs()
   },
   beforeDestroy () {

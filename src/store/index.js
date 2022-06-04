@@ -188,6 +188,106 @@ export default new Vuex.Store({ // Vuex : 중앙통제관리저장소
           ds0605: {
             subject: '진짜 실력을 갖춰라',
             src: '3FMF31h-JDI'
+          },
+          ds0606: {
+            subject: '돈 공부를 해야하는 2가지 이유',
+            src: 'bCF-Th5IS38'
+          },
+          ds0607: {
+            subject: '인생의 퀀텀 점프는 어떻게 이룰 수 있는가?',
+            src: 'IGPPOA9Sb4c'
+          },
+          ds0608: {
+            subject: '긍정적 마인드를 유지하는 2가지 방법',
+            src: 'aWwKVezKhB4'
+          },
+          ds0609: {
+            subject: '사랑의 감정보다 중요한 사랑의 의미',
+            src: '-HW650L0AS8'
+          },
+          ds0610: {
+            subject: '원치 않는 감정을 다스리는 8가지 방법',
+            src: 'Cp09ukC7qzA'
+          },
+          ds0611: {
+            subject: '너무 뻔해서 어처구니가 없는 성공의 비밀',
+            src: '8AxnDBJ9JBc'
+          },
+          ds0612: {
+            subject: '공부, 행복, 자존감, 성장을 한 번에 모두 느끼는 \'몰입\'',
+            src: 'qmfNsLTQ5lo'
+          },
+          ds0613: {
+            subject: '절대 손해 보지 않는 핵심 습관 4가지',
+            src: 'iYyJ60Ds4IU'
+          },
+          ds0614: {
+            subject: '나쁜 위로의 2가지 유형',
+            src: 'YtBUGQUobhs'
+          },
+          ds0615: {
+            subject: '실패를 성공으로 만드는 4가지 비결',
+            src: '-JsUA4wuhCg'
+          },
+          ds0616: {
+            subject: '나를 가난하게 만드는 6가지 태도',
+            src: 'mpSshMDXO24'
+          },
+          ds0617: {
+            subject: '누구나 처음엔 걷지도 못했다',
+            src: 'iGaPQwywl1A'
+          },
+          ds0618: {
+            subject: '건강한 몸을 오래도록 유지하고 싶다면 알아야 할 건강 상식 2가지',
+            src: 'rbLBfbdVhGc'
+          },
+          ds0619: {
+            subject: '변하고 싶다면 꼭 변해야 하는 1가지',
+            src: 'kG0PmfkQm2s'
+          },
+          ds0620: {
+            subject: '꼰대를 만났다면 참아야 할까? 싸워야 할까?',
+            src: 'VaTIPx7dTw0'
+          },
+          ds0621: {
+            subject: '싸움보다 실력이 먼저다',
+            src: 'A7X-EO8sZK0'
+          },
+          ds0622: {
+            subject: '빨리 부자가 되고 싶다면 \'컴포트존\'을 벗어나라',
+            src: 'yW-T8LuOJjs'
+          },
+          ds0623: {
+            subject: '나이가 들수록 공부해야 하는 이유',
+            src: 'y0HMiXzmAKw'
+          },
+          ds0624: {
+            subject: '운동에는 나이가 없다',
+            src: 'O9V-RMX0SAY'
+          },
+          ds0625: {
+            subject: '하루라도 빨리 목표를 세우면 좋은 이유',
+            src: 'qkqmN_TyUCE'
+          },
+          ds0626: {
+            subject: '세상이 지옥으로 변하는 이유',
+            src: 'kd3uWmJLjuY'
+          },
+          ds0627: {
+            subject: '견딜 수 있는 힘은 어디서 오는가?',
+            src: 'gBuu6zfNVRg'
+          },
+          ds0628: {
+            subject: '뇌에 쌓인 노폐물을 씻어내는 1가지 방법',
+            src: 'ktKTRpXk1cY'
+          },
+          ds0629: {
+            subject: '조용히 자신을 망가뜨리는 태도 1가지',
+            src: 'dH405BtTfUo'
+          },
+          ds0630: {
+            subject: '가짜 인맥 VS 진짜 인맥',
+            src: 'VhKwR1knpQE'
           }
         }
       }
