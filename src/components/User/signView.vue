@@ -73,9 +73,7 @@ export default {
       } finally {
         this.setFireUser(null) // 사용자 정보 초기화
       }
-      setTimeout(function () { // 0.5초 딜레이
-        window.location.reload()
-      }, 500)
+      window.location.replace('/')
     }
   },
   computed: {

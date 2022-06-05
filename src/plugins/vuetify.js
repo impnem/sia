@@ -50,7 +50,7 @@ export default new Vuetify({
         custom: '#21222c',
         memo: '#e6b905',
         list: '#dfdfdf',
-        techStacks: '#f3f0f0 ',
+        techStacks: '#f3f0f0',
         background: '#7c7c7c'
       },
       dark: {
