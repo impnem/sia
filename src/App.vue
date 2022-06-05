@@ -16,7 +16,7 @@
     <v-navigation-drawer
       app
       v-model="drawer"
-      width="350"
+      width="290"
       color="thirdly"
       max-height="100%"
     >
