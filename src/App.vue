@@ -101,6 +101,63 @@ export default {
 </script>
 
 <style>
+  /* 글자체 변경 */
+  * {
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: 600;
+  }
+  .v-application .text-h1 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-h2 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-h3 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-h4 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-h5 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-h6 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-subtitle-1 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-subtitle-2 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-body-1 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-body-2 {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-button {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-caption {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
+  .v-application .text-overline {
+    font-family: 'Gowun Dodum', sans-serif !important;
+    font-weight: 400;
+  }
   /* scrollbar 동작은 하면서 숨기기 */
   html {
     /* overflow-y: hidden !important; */
