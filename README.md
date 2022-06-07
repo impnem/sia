@@ -1,3 +1,3 @@
-<Personal Project>
+*Personal Project*
 
 Self-Improvement App.
